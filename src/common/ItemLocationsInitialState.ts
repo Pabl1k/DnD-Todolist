@@ -2,11 +2,11 @@ import { ItemLocationType } from "../types/ItemLocations";
 
 export const ItemLocationsInitialState: ItemLocationType = {
   start: {
-    board: null,
-    item: null,
+    board: -1,
+    item: -1,
   },
   end: {
-    board: null,
-    item: null,
+    board: -1,
+    item: -1,
   },
 };

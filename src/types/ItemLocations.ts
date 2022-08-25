@@ -1,6 +1,6 @@
 interface GrabDropType {
-  board: number | null;
-  item: number | null;
+  board: number;
+  item: number;
 }
 
 export interface ItemLocationType {

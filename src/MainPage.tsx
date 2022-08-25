@@ -59,6 +59,8 @@ const MainPage = () => {
     ItemLocationsInitialState
   );
 
+  console.log("updated");
+
   const dragStartHandler = (boardIndex: number, itemIndex: number) => {
     setItemLocations((prevState) => {
       return {
@@ -77,7 +79,7 @@ const MainPage = () => {
         ...prevState,
         end: {
           board: dropBoard,
-          item: null,
+          item: -1,
         },
       };
     });
@@ -88,8 +90,8 @@ const MainPage = () => {
 
     const stateCopy = [...boards];
     if (start.board !== end.board) {
-      const removedItem = stateCopy[start.board!].items.splice(start.item!, 1);
-      stateCopy[end.board!].items.push(...removedItem!);
+      const removedItem = stateCopy[start.board].items.splice(start.item, 1);
+      stateCopy[end.board].items.push(...removedItem);
     }
     setBoards(stateCopy);
   };
