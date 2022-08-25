@@ -1,0 +1,15 @@
+.settings {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+
+  opacity: 0.8;
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
+
+  &:hover {
+    opacity: 1;
+    margin-bottom: 2px;
+  }
+}
