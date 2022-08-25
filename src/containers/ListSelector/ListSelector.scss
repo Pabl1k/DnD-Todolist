@@ -1,0 +1,10 @@
+.list-selector {
+  position: fixed;
+  top: 0;
+  left: 5vw;
+  display: flex;
+
+  &__button-container {
+    margin-right: 1rem;
+  }
+}

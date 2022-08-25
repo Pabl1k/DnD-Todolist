@@ -1,0 +1,25 @@
+.selector-item {
+  border: 2px solid #000;
+  border-right: none;
+  cursor: pointer;
+  height: 2em;
+  padding: 0 1em;
+
+  &:last-child {
+    border-right: 1px solid #000;
+  }
+
+  &:hover {
+    &:first-child {
+      margin-right: 2px;
+    }
+
+    &:not(:first-child) {
+      margin: 0 2px;
+    }
+
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),
+      0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1),
+      0 16px 16px rgba(0, 0, 0, 0.1);
+  }
+}

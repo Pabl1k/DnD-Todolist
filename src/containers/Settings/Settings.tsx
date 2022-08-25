@@ -4,7 +4,7 @@ import icon from "../../assets/icons/settings.svg";
 const Settings = () => {
   return (
     <div className="settings">
-      <img src={icon} alt={""} />
+      <img src={icon} alt="settings" />
     </div>
   );
 };
