@@ -6,16 +6,26 @@ interface Props {
   title: string;
   toDoCard?: boolean;
   children?: ReactNode;
+  onDragEng: () => void;
+  onDragOver: () => void;
 }
 
-const Board: FC<Props> = ({ title, toDoCard, children }) => {
+const Board: FC<Props> = ({
+  title,
+  toDoCard,
+  children,
+  onDragEng,
+  onDragOver,
+}) => {
   return (
     <div className="card">
       <div className="card__row">
         <span className="card__title">{title}</span>
         {toDoCard && <CreateNewItemButton title="Add new task" />}
       </div>
-      <div className="card__main">{children}</div>
+      <div className="card__main" onDragEnd={onDragEng} onDragOver={onDragOver}>
+        {children}
+      </div>
     </div>
   );
 };
