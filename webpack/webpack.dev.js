@@ -1,4 +1,4 @@
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -7,7 +7,5 @@ module.exports = {
     open: true,
   },
   devtool: "cheap-module-source-map",
-  plugins: [
-    new ReactRefreshWebpackPlugin(),
-    ],
-}
+  plugins: [new ReactRefreshWebpackPlugin()],
+};

@@ -26,11 +26,11 @@ module.exports = {
         type: "asset/resource",
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf|)$/,
+        test: /\.(woff(2)?|eot|ttf|otf|svg)$/,
         type: "asset/inline",
       },
       {
-        test: /\.(txt|svg|glsl|vert|frag)/,
+        test: /\.(txt|glsl|vert|frag)/,
         type: "asset/source",
         exclude: /node_modules/,
       },
