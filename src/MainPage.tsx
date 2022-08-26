@@ -11,6 +11,7 @@ import { uid } from "./hooks/uid";
 import "./MainPage.scss";
 
 const MainPage = () => {
+  console.log("PR test");
   const backgroundImg = {
     backgroundImage: `url(${background})`,
   };
