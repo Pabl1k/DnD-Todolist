@@ -7,13 +7,19 @@ import "./Item.scss";
 interface Props {
   data: ItemType;
   onDragStart: () => void;
+  onDragOver: () => void;
 }
 
-const Item: FC<Props> = ({ data, onDragStart }) => {
+const Item: FC<Props> = ({ data, onDragStart, onDragOver }) => {
   const { title, description, date, priority } = data;
 
   return (
-    <div className="item" draggable onDragStart={onDragStart}>
+    <div
+      className="item"
+      draggable
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+    >
       <div className="item__container">
         <div className="item__top-container">
           <div>

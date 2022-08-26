@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import {FC, ReactNode} from "react";
 import "./Board.scss";
 import CreateNewItemButton from "../CreateNewItemButton/CreateNewItemButton";
 
@@ -7,7 +7,7 @@ interface Props {
   toDoCard?: boolean;
   children?: ReactNode;
   onDragEng: () => void;
-  onDragOver: () => void;
+  onDragEnter: () => void;
 }
 
 const Board: FC<Props> = ({
@@ -15,7 +15,7 @@ const Board: FC<Props> = ({
   toDoCard,
   children,
   onDragEng,
-  onDragOver,
+  onDragEnter,
 }) => {
   return (
     <div className="card">
@@ -23,7 +23,11 @@ const Board: FC<Props> = ({
         <span className="card__title">{title}</span>
         {toDoCard && <CreateNewItemButton title="Add new task" />}
       </div>
-      <div className="card__main" onDragEnd={onDragEng} onDragOver={onDragOver}>
+      <div
+        className="card__main"
+        onDragEnd={onDragEng}
+        onDragEnter={onDragEnter}
+      >
         {children}
       </div>
     </div>

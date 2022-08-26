@@ -9,6 +9,7 @@
       "version": "detect"
     }
   },
+  "plugins": ["react", "import", "jsx-a11y", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -18,11 +19,10 @@
     "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
     "plugin:eslint-comments/recommended",
-    "plugin:prettier/recommended",
     "eslint-config-prettier"
   ],
   "rules": {
-    "no-unused-vars": "off",
+    "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": ["off"],
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -30,6 +30,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-key": "error",
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-console": "warn"
   }
 }

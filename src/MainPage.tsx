@@ -2,13 +2,13 @@ import { useState } from "react";
 import background from "./assets/background/2.jpeg";
 import Settings from "./containers/Settings/Settings";
 import ListSelector from "./containers/ListSelector/ListSelector";
-import "./MainPage.scss";
 import { BoardType } from "./types/board";
 import { ItemLocationType } from "./types/ItemLocations";
 import { ItemLocationsInitialState } from "./common/ItemLocationsInitialState";
 import Board from "./components/Board/Board";
 import Item from "./components/Item/Item";
 import { uid } from "./hooks/uid";
+import "./MainPage.scss";
 
 const MainPage = () => {
   const backgroundImg = {
@@ -59,8 +59,6 @@ const MainPage = () => {
     ItemLocationsInitialState
   );
 
-  console.log("updated");
-
   const dragStartHandler = (boardIndex: number, itemIndex: number) => {
     setItemLocations((prevState) => {
       return {
@@ -73,13 +71,25 @@ const MainPage = () => {
     });
   };
 
-  const dragOverHandler = (dropBoard: number) => {
+  const dragOverItemHandler = (dropBoard: number, dropPosition: number) => {
     setItemLocations((prevState) => {
       return {
         ...prevState,
         end: {
           board: dropBoard,
-          item: -1,
+          item: dropPosition,
+        },
+      };
+    });
+  };
+
+  const dragEnterHandler = (dropBoard: number) => {
+    setItemLocations((prevState) => {
+      return {
+        ...prevState,
+        end: {
+          board: dropBoard,
+          item: 0,
         },
       };
     });
@@ -87,12 +97,16 @@ const MainPage = () => {
 
   const dragEndHandler = () => {
     const { start, end } = itemLocations;
-
     const stateCopy = [...boards];
-    if (start.board !== end.board) {
+
+    if (start.board === end.board) {
+      const movedItem = stateCopy[start.board].items.splice(start.item, 1);
+      stateCopy[start.board].items.splice(end.item, 0, ...movedItem);
+    } else {
       const removedItem = stateCopy[start.board].items.splice(start.item, 1);
-      stateCopy[end.board].items.push(...removedItem);
+      stateCopy[end.board].items.splice(end.item, 0, ...removedItem);
     }
+
     setBoards(stateCopy);
   };
 
@@ -106,13 +120,14 @@ const MainPage = () => {
             title={board.title}
             toDoCard={board.id === "toDo"}
             onDragEng={dragEndHandler}
-            onDragOver={() => dragOverHandler(boardIndex!)}
+            onDragEnter={() => dragEnterHandler(boardIndex)}
           >
             {board.items?.map((item, itemIndex) => (
               <Item
                 key={item.id}
                 data={item}
                 onDragStart={() => dragStartHandler(boardIndex, itemIndex)}
+                onDragOver={() => dragOverItemHandler(boardIndex, itemIndex)}
               />
             ))}
           </Board>
