@@ -1,0 +1,3 @@
+@function format-error-message($key, $utility, $known-keys) {
+  @return '\A Unknown key: "#{$key}" in "#{$utility}" \A\A Available options are: \A #{known-keys}';
+}
