@@ -1,0 +1,17 @@
+.circle-checkbox {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 50%;
+  border: 2px solid #000;
+  padding: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__active {
+    border-radius: 50%;
+    background-color: blue;
+    height: 1rem;
+    width: 1rem;
+  }
+}

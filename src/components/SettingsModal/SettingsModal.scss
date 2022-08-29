@@ -1,13 +1,15 @@
+@import '../../styles/index';
+
 .settings-modal {
   display: flex;
   flex-direction: column;
-  width: 13vw;
+  width: 15vw;
   background: #fff;
   border: 2px solid #000;
   border-radius: 1rem;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),
-  0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1),
-  0 16px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: -3px -4px 24px 0px rgba(86,100,153,0.75);
+  -webkit-box-shadow: -3px -4px 24px 0px rgba(86,100,153,0.75);
+  -moz-box-shadow: -3px -4px 24px 0px rgba(86,100,153,0.75);
 
   &__title {
     border-bottom: 2px solid #000;
@@ -21,20 +23,30 @@
   &__single {
     cursor: pointer;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     padding: 0.8rem 1rem;
+    width: 100%;
+    font-size: 1em;
+
+    &.active {
+      background-color: $dnd-settings-menu-hover-light-color;
+
+      span {
+        color: $dnd-light-color;
+      }
+    }
 
     span {
-      font-size: 1.1em;
       color: #464646;
     }
 
     &:hover {
-      background-color: #f3f3f3;
+      background-color: $dnd-settings-menu-hover-light-color;
       padding-left: 1.2rem;
 
       span {
-        color: #000;
+        color: $dnd-light-color;
       }
     }
 

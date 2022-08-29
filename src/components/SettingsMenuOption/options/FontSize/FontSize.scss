@@ -1,0 +1,16 @@
+.font-size {
+  display: flex;
+
+  &__single {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      margin-right: 1rem;
+    }
+
+    span {
+      margin-left: 0.3rem;
+    }
+  }
+}

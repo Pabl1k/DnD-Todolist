@@ -1,5 +1,4 @@
 import { useState } from "react";
-import background from "./assets/background/2.jpeg";
 import Settings from "./containers/Settings/Settings";
 import ListSelector from "./containers/ListSelector/ListSelector";
 import { BoardType } from "./types/board";
@@ -12,7 +11,7 @@ import "./MainPage.scss";
 
 const MainPage = () => {
   const backgroundImg = {
-    backgroundImage: `url(${background})`,
+    backgroundImage: `url(${""})`,
   };
 
   const [boards, setBoards] = useState<BoardType[]>([
@@ -59,40 +58,27 @@ const MainPage = () => {
     ItemLocationsInitialState
   );
 
-  const dragStartHandler = (boardIndex: number, itemIndex: number) => {
-    setItemLocations((prevState) => {
-      return {
-        ...prevState,
-        start: {
-          board: boardIndex,
-          item: itemIndex,
-        },
-      };
-    });
-  };
-
-  const dragOverItemHandler = (dropBoard: number, dropPosition: number) => {
-    setItemLocations((prevState) => {
-      return {
-        ...prevState,
-        end: {
-          board: dropBoard,
-          item: dropPosition,
-        },
-      };
-    });
-  };
-
-  const dragEnterHandler = (dropBoard: number) => {
-    setItemLocations((prevState) => {
-      return {
-        ...prevState,
-        end: {
-          board: dropBoard,
-          item: 0,
-        },
-      };
-    });
+  const setStateHandler = (
+    key: "start" | "end",
+    boardIndex: number,
+    itemIndex?: number
+  ) => {
+    if (
+      boardIndex === itemLocations.start.board &&
+      boardIndex === itemLocations.end.board
+    ) {
+      return;
+    } else {
+      setItemLocations((prevState) => {
+        return {
+          ...prevState,
+          [key]: {
+            board: boardIndex,
+            item: itemIndex,
+          },
+        };
+      });
+    }
   };
 
   const dragEndHandler = () => {
@@ -120,14 +106,16 @@ const MainPage = () => {
             title={board.title}
             toDoCard={board.id === "toDo"}
             onDragEng={dragEndHandler}
-            onDragEnter={() => dragEnterHandler(boardIndex)}
+            onDragEnter={() => setStateHandler("end", boardIndex)}
           >
             {board.items?.map((item, itemIndex) => (
               <Item
                 key={item.id}
                 data={item}
-                onDragStart={() => dragStartHandler(boardIndex, itemIndex)}
-                onDragOver={() => dragOverItemHandler(boardIndex, itemIndex)}
+                onDragStart={() =>
+                  setStateHandler("start", boardIndex, itemIndex)
+                }
+                onDragOver={() => setStateHandler("end", boardIndex, itemIndex)}
               />
             ))}
           </Board>
