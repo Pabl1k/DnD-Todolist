@@ -1,15 +1,28 @@
 .settings {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 90px;
+  right: 15px;
 
-  opacity: 0.8;
-  cursor: pointer;
-  height: 45px;
-  width: 45px;
+  &__button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 
-  &:hover {
-    opacity: 1;
-    margin-bottom: 2px;
+    opacity: 0.8;
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+
+    &.open {
+      opacity: 1;
+      margin-bottom: 2px;
+    }
+
+    &.closed {
+      &:hover {
+        opacity: 1;
+        margin-bottom: 2px;
+      }
+    }
   }
 }
