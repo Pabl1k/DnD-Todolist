@@ -1,14 +1,14 @@
 import { useState } from "react";
-import Settings from "./containers/Settings/Settings";
-import ListSelector from "./containers/ListSelector/ListSelector";
-import { BoardType } from "./types/board";
-import { ItemLocationType } from "./types/ItemLocations";
-import { ItemLocationsInitialState } from "./common/ItemLocationsInitialState";
-import Board from "./components/Board/Board";
-import Item from "./components/Item/Item";
-import { uid } from "./hooks/uid";
+import Settings from "../Settings/Settings";
+import ListSelector from "../ListSelector/ListSelector";
+import { BoardType } from "../../types/board";
+import { ItemLocationType } from "../../types/ItemLocations";
+import { ItemLocationsInitialState } from "../../common/ItemLocationsInitialState";
+import Board from "../../components/Board/Board";
+import Item from "../../components/Item/Item";
+import { uid } from "../../hooks/uid";
 import "./MainPage.scss";
-import { Background as BackgroundSettings } from "./components/SettingsMenuOption/options/Background/Background";
+import { Background as BackgroundSettings } from "../../components/SettingsMenuOption/options/Background/Background";
 
 const MainPage = () => {
   const backgroundImg = {

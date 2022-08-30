@@ -1,4 +1,4 @@
-import MainPage from "./MainPage";
+import MainPage from "./containers/MainPage/MainPage";
 import { useState } from "react";
 import { initialSettings } from "./common/InitialSettings";
 import { InitialSettingsType } from "./types/settings";
