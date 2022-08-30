@@ -1,26 +1,57 @@
-import { FC, useState } from "react";
-import "./SettingsModal.scss";
+import { FC, useEffect, useState } from "react";
 import { IMenu } from "../../types/settingsModal";
 import SettingsMenuOption from "../SettingsMenuOption/SettingsMenuOption";
 import FontSize from "../SettingsMenuOption/options/FontSize/FontSize";
+import Language from "../SettingsMenuOption/options/Language/Language";
+import Theme from "../SettingsMenuOption/options/Theme/Theme";
+import "./SettingsModal.scss";
 
 interface Props {
   open: boolean;
+  onBackgroundOpen: () => void;
 }
 
-const SettingsModal: FC<Props> = ({ open }) => {
-  const menu: IMenu[] = [
-    { id: 1, title: "Background", content: <div>text</div> },
-    { id: 2, title: "Language", content: <div>text</div> },
-    { id: 3, title: "Font size", content: <FontSize /> },
-    { id: 4, title: "Theme", content: <div>text</div> },
-  ];
-
+const SettingsModal: FC<Props> = ({ open, onBackgroundOpen }) => {
   const [openOptionIndex, setOpenOptionIndex] = useState<number | null>(null);
 
-  const optionClickHandler = (index: number) => {
+  const menu: IMenu[] = [
+    { id: 1, title: "Background" },
+    { id: 2, title: "Language" },
+    { id: 3, title: "Font size" },
+    { id: 4, title: "Theme" },
+  ];
+
+  const optionClickHandler = (index: number, title: string) => {
+    if (title === "Background") {
+      onBackgroundOpen();
+    }
     setOpenOptionIndex(openOptionIndex === index ? null : index);
   };
+
+  const renderTitle = (title: string) => {
+    return title === "Theme" ? (
+      <Theme currentMode="light" />
+    ) : (
+      <span>{title}</span>
+    );
+  };
+
+  const renderContent = (title: string) => {
+    switch (title) {
+      case "Language":
+        return <Language />;
+      case "Font size":
+        return <FontSize />;
+      default:
+        return;
+    }
+  };
+
+  useEffect(() => {
+    if (!open) {
+      setOpenOptionIndex(null);
+    }
+  }, [open]);
 
   return open ? (
     <div className="settings-modal">
@@ -35,15 +66,17 @@ const SettingsModal: FC<Props> = ({ open }) => {
               className={`settings-modal__single ${
                 openOptionIndex === index && "active"
               }`}
-              onClick={() => optionClickHandler(index)}
+              onClick={() => optionClickHandler(index, m.title)}
             >
-              <span>{m.title}</span>
+              {renderTitle(m.title)}
             </button>
-            {openOptionIndex === index && (
-              <SettingsMenuOption lastChild={menu.length === index + 1}>
-                {m.content}
-              </SettingsMenuOption>
-            )}
+            {openOptionIndex === index &&
+              m.title !== "Background" &&
+              m.title !== "Theme" && (
+                <SettingsMenuOption lastChild={menu.length === index + 1}>
+                  {renderContent(m.title)}
+                </SettingsMenuOption>
+              )}
           </>
         ))}
       </div>

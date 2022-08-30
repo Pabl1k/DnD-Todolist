@@ -3,13 +3,14 @@
 .settings-modal {
   display: flex;
   flex-direction: column;
-  width: 15vw;
   background: #fff;
   border: 2px solid #000;
   border-radius: 1rem;
   box-shadow: -3px -4px 24px 0px rgba(86,100,153,0.75);
   -webkit-box-shadow: -3px -4px 24px 0px rgba(86,100,153,0.75);
   -moz-box-shadow: -3px -4px 24px 0px rgba(86,100,153,0.75);
+  min-width: 170px;
+  width: 15vw;
 
   &__title {
     border-bottom: 2px solid #000;
@@ -53,6 +54,10 @@
     &:last-child {
       border-bottom-left-radius: 1rem;
       border-bottom-right-radius: 1rem;
+
+      &:hover {
+        padding-left: 1rem; // static on hover
+      }
     }
   }
 }

@@ -8,6 +8,7 @@ import Board from "./components/Board/Board";
 import Item from "./components/Item/Item";
 import { uid } from "./hooks/uid";
 import "./MainPage.scss";
+import { Background as BackgroundSettings } from "./components/SettingsMenuOption/options/Background/Background";
 
 const MainPage = () => {
   const backgroundImg = {
@@ -57,6 +58,7 @@ const MainPage = () => {
   const [itemLocations, setItemLocations] = useState<ItemLocationType>(
     ItemLocationsInitialState
   );
+  const [openBackgroundSettings, setOpenBackgroundSettings] = useState(false);
 
   const setStateHandler = (
     key: "start" | "end",
@@ -98,6 +100,9 @@ const MainPage = () => {
 
   return (
     <section className="main-page" style={backgroundImg}>
+      {openBackgroundSettings && (
+        <BackgroundSettings onClose={() => setOpenBackgroundSettings(false)} />
+      )}
       <ListSelector />
       <div className="main-page__container">
         {boards.map((board, boardIndex) => (
@@ -121,7 +126,7 @@ const MainPage = () => {
           </Board>
         ))}
       </div>
-      <Settings />
+      <Settings onBackgroundOpen={() => setOpenBackgroundSettings(true)} />
     </section>
   );
 };
