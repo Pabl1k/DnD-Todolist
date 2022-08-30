@@ -1,0 +1,24 @@
+import "./FontSize.scss";
+import CircleCheckbox from "../../../CircleCheckbox/CircleCheckbox";
+
+const FontSize = () => {
+  const options = [
+    { id: 1, title: "Small", active: true, onClick: () => {} },
+    { id: 2, title: "Large", active: false, onClick: () => {} },
+  ];
+
+  const activeHandler = () => {};
+
+  return (
+    <div className="font-size">
+      {options.map((opt) => (
+        <div key={opt.id} className="font-size__single">
+          <CircleCheckbox active={opt.active} onClick={activeHandler} />
+          <span>{opt.title}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default FontSize;

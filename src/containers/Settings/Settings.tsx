@@ -1,10 +1,14 @@
-import { createRef, useState } from "react";
-import icon from "../../assets/icons/settings.svg";
+import { createRef, FC, useState } from "react";
+import settingsIcon from "../../assets/icons/settings.svg";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
 import "./Settings.scss";
 
-const Settings = () => {
+interface Props {
+  onBackgroundOpen: () => void;
+}
+
+const Settings: FC<Props> = ({ onBackgroundOpen }) => {
   const [open, setOpen] = useState(false);
 
   const modalRef = createRef<HTMLDivElement>();
@@ -12,15 +16,13 @@ const Settings = () => {
 
   return (
     <div className="settings" ref={modalRef}>
-      <div className="settings__modal">
-        <SettingsModal open={open} />
-      </div>
+      <SettingsModal open={open} onBackgroundOpen={onBackgroundOpen} />
       <button
         type="button"
         className={`settings__button ${open ? "open" : "closed"}`}
         onClick={() => setOpen(!open)}
       >
-        <img src={icon} alt="settings" />
+        <img src={settingsIcon} alt="settings" />
       </button>
     </div>
   );

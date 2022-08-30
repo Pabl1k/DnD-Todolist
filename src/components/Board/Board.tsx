@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
-import "./Board.scss";
 import CreateNewItemButton from "../CreateNewItemButton/CreateNewItemButton";
+import "./Board.scss";
 
 interface Props {
   title: string;

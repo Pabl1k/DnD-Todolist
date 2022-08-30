@@ -1,5 +1,4 @@
 import { useState } from "react";
-import background from "./assets/background/2.jpeg";
 import Settings from "./containers/Settings/Settings";
 import ListSelector from "./containers/ListSelector/ListSelector";
 import { BoardType } from "./types/board";
@@ -9,10 +8,11 @@ import Board from "./components/Board/Board";
 import Item from "./components/Item/Item";
 import { uid } from "./hooks/uid";
 import "./MainPage.scss";
+import { Background as BackgroundSettings } from "./components/SettingsMenuOption/options/Background/Background";
 
 const MainPage = () => {
   const backgroundImg = {
-    backgroundImage: `url(${background})`,
+    backgroundImage: `url(${""})`,
   };
 
   const [boards, setBoards] = useState<BoardType[]>([
@@ -58,41 +58,29 @@ const MainPage = () => {
   const [itemLocations, setItemLocations] = useState<ItemLocationType>(
     ItemLocationsInitialState
   );
+  const [openBackgroundSettings, setOpenBackgroundSettings] = useState(false);
 
-  const dragStartHandler = (boardIndex: number, itemIndex: number) => {
-    setItemLocations((prevState) => {
-      return {
-        ...prevState,
-        start: {
-          board: boardIndex,
-          item: itemIndex,
-        },
-      };
-    });
-  };
-
-  const dragOverItemHandler = (dropBoard: number, dropPosition: number) => {
-    setItemLocations((prevState) => {
-      return {
-        ...prevState,
-        end: {
-          board: dropBoard,
-          item: dropPosition,
-        },
-      };
-    });
-  };
-
-  const dragEnterHandler = (dropBoard: number) => {
-    setItemLocations((prevState) => {
-      return {
-        ...prevState,
-        end: {
-          board: dropBoard,
-          item: 0,
-        },
-      };
-    });
+  const setStateHandler = (
+    key: "start" | "end",
+    boardIndex: number,
+    itemIndex?: number
+  ) => {
+    if (
+      boardIndex === itemLocations.start.board &&
+      boardIndex === itemLocations.end.board
+    ) {
+      return;
+    } else {
+      setItemLocations((prevState) => {
+        return {
+          ...prevState,
+          [key]: {
+            board: boardIndex,
+            item: itemIndex,
+          },
+        };
+      });
+    }
   };
 
   const dragEndHandler = () => {
@@ -112,6 +100,9 @@ const MainPage = () => {
 
   return (
     <section className="main-page" style={backgroundImg}>
+      {openBackgroundSettings && (
+        <BackgroundSettings onClose={() => setOpenBackgroundSettings(false)} />
+      )}
       <ListSelector />
       <div className="main-page__container">
         {boards.map((board, boardIndex) => (
@@ -120,20 +111,22 @@ const MainPage = () => {
             title={board.title}
             toDoCard={board.id === "toDo"}
             onDragEng={dragEndHandler}
-            onDragEnter={() => dragEnterHandler(boardIndex)}
+            onDragEnter={() => setStateHandler("end", boardIndex)}
           >
             {board.items?.map((item, itemIndex) => (
               <Item
                 key={item.id}
                 data={item}
-                onDragStart={() => dragStartHandler(boardIndex, itemIndex)}
-                onDragOver={() => dragOverItemHandler(boardIndex, itemIndex)}
+                onDragStart={() =>
+                  setStateHandler("start", boardIndex, itemIndex)
+                }
+                onDragOver={() => setStateHandler("end", boardIndex, itemIndex)}
               />
             ))}
           </Board>
         ))}
       </div>
-      <Settings />
+      <Settings onBackgroundOpen={() => setOpenBackgroundSettings(true)} />
     </section>
   );
 };
