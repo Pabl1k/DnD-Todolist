@@ -60,27 +60,40 @@ const MainPage = () => {
   );
   const [openBackgroundSettings, setOpenBackgroundSettings] = useState(false);
 
-  const setStateHandler = (
-    key: "start" | "end",
-    boardIndex: number,
-    itemIndex?: number
-  ) => {
-    if (
-      boardIndex === itemLocations.start.board &&
-      boardIndex === itemLocations.end.board
-    ) {
-      return;
-    } else {
-      setItemLocations((prevState) => {
-        return {
-          ...prevState,
-          [key]: {
-            board: boardIndex,
-            item: itemIndex,
-          },
-        };
-      });
-    }
+  const dragStartHandler = (boardIndex: number, itemIndex: number) => {
+    setItemLocations((prevState) => {
+      return {
+        ...prevState,
+        start: {
+          board: boardIndex,
+          item: itemIndex,
+        },
+      };
+    });
+  };
+
+  const dragOverItemHandler = (dropBoard: number, dropPosition: number) => {
+    setItemLocations((prevState) => {
+      return {
+        ...prevState,
+        end: {
+          board: dropBoard,
+          item: dropPosition,
+        },
+      };
+    });
+  };
+
+  const dragEnterHandler = (dropBoard: number) => {
+    setItemLocations((prevState) => {
+      return {
+        ...prevState,
+        end: {
+          board: dropBoard,
+          item: 0,
+        },
+      };
+    });
   };
 
   const dragEndHandler = () => {
@@ -111,16 +124,14 @@ const MainPage = () => {
             title={board.title}
             toDoCard={board.id === "toDo"}
             onDragEng={dragEndHandler}
-            onDragEnter={() => setStateHandler("end", boardIndex)}
+            onDragEnter={() => dragEnterHandler(boardIndex)}
           >
             {board.items?.map((item, itemIndex) => (
               <Item
                 key={item.id}
                 data={item}
-                onDragStart={() =>
-                  setStateHandler("start", boardIndex, itemIndex)
-                }
-                onDragOver={() => setStateHandler("end", boardIndex, itemIndex)}
+                onDragStart={() => dragStartHandler(boardIndex, itemIndex)}
+                onDragOver={() => dragOverItemHandler(boardIndex, itemIndex)}
               />
             ))}
           </Board>
