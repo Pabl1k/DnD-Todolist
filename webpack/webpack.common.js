@@ -26,13 +26,18 @@ module.exports = {
         type: "asset/resource",
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf|svg)$/,
+        test: /\.(woff(2)?|eot|ttf|otf)$/,
         type: "asset/inline",
       },
       {
         test: /\.(txt|glsl|vert|frag)/,
         type: "asset/source",
         exclude: /node_modules/,
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.tsx?$/,
+        use: ['@svgr/webpack'],
       },
     ],
   },
