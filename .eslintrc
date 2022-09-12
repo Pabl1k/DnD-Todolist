@@ -30,6 +30,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-key": "error",
+    "jsx-a11y/no-autofocus": "off",
     "no-undef": "off",
     "no-console": "warn"
   }
