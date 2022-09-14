@@ -1,24 +1,28 @@
 import { FC } from "react";
-import EN from '../../../../assets/icons/EN.svg';
-import LT from '../../../../assets/icons/LT.svg';
-import RU from '../../../../assets/icons/RU.svg';
 import "./Language.scss";
+import Icon, { IconName } from "../../../Icon";
+
+interface ILanguages {
+  id: number;
+  language: string;
+  flag: IconName;
+}
 
 interface Props {}
 
 const Language: FC<Props> = () => {
-  const options = [
-    { id: 1, language: "English", flag: EN },
-    { id: 2, language: "Lietuvių", flag: LT },
-    { id: 3, language: "Русский", flag: RU },
+  const languages: ILanguages[] = [
+    { id: 1, language: "English", flag: "EnFlag" },
+    { id: 2, language: "Lietuvių", flag: "LtFlag" },
+    { id: 3, language: "Русский", flag: "RuFlag" },
   ];
 
   return (
     <div className="language">
-      {options.map((opt) => (
-        <div key={opt.id} className="language__single">
-          <img src={opt.flag} alt={`${opt.language} flag`} className="language__flag" />
-          <span>{opt.language}</span>
+      {languages.map((l) => (
+        <div key={l.id} className="language__single">
+          <Icon name={l.flag} alt={`${l.language} flag`} />
+          <span>{l.language}</span>
         </div>
       ))}
     </div>

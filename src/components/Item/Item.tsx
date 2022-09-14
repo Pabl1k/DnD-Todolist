@@ -1,25 +1,17 @@
-import { FC, useState } from "react";
-import icon from "../../assets/icons/priority.svg";
+import { FC } from "react";
 import { ItemType } from "../../types/item";
 import { Dots } from "../../common/DotsTag";
+import Icon from "../Icon";
 import "./Item.scss";
 
 interface Props {
   data: ItemType;
   onDragStart: () => void;
   onDragOver: () => void;
-  onAddNewTask: () => void;
-  onTaskSet: (task: ItemType) => void;
 }
 
-const Item: FC<Props> = ({
-  data,
-  onDragStart,
-  onDragOver,
-  onAddNewTask,
-  onTaskSet,
-}) => {
-  const { id, title, description, priority } = data;
+const Item: FC<Props> = ({ data, onDragStart, onDragOver }) => {
+  const { title, description, priority } = data;
 
   return (
     <div
@@ -32,13 +24,9 @@ const Item: FC<Props> = ({
         <div className="item__top-container">
           <div>
             {priority && (
-              <img src={icon} alt="Priority" className="item__priority-icon" />
+              <Icon name="priority" className="item__priority-icon" />
             )}
-            {!id ? (
-              <ItemInput onChange={onTaskSet} />
-            ) : (
-              <span className="item__title">{title}</span>
-            )}
+            <span className="item__title">{title}</span>
           </div>
         </div>
         <div className="item__description">{description}</div>
@@ -53,21 +41,3 @@ const Item: FC<Props> = ({
 };
 
 export default Item;
-
-interface ItemInputProps {
-  onChange: (task: ItemType) => void;
-}
-const ItemInput: FC<ItemInputProps> = ({ onChange }) => {
-  const [value, setValue] = useState("");
-
-  return (
-    <input
-      type="text"
-      className="item-input"
-      placeholder="Enter task title"
-      value={value}
-      autoFocus
-      onChange={(e) => setValue(e.currentTarget.value)}
-    />
-  );
-};

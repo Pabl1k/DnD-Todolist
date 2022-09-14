@@ -1,12 +1,9 @@
-import { FC } from "react";
-import Google from "../../assets/icons/google.svg";
 import { useCustomContext } from "../../hooks/useCustomContext";
 import firebase from "firebase";
+import Icon from "../Icon";
 import "./Login.scss";
 
-interface Props {}
-
-const Login: FC<Props> = () => {
+const Login = () => {
   const { auth } = useCustomContext();
 
   const loginHandler = async () => {
@@ -17,7 +14,8 @@ const Login: FC<Props> = () => {
   return (
     <div className="login">
       <button className="button" onClick={loginHandler}>
-        Login with <Google className="login__google-icon" alt="google icon" />
+        <span className="login__title">Login with</span>
+        <Icon name="google" height={35} width={35} />
       </button>
     </div>
   );

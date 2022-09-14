@@ -1,6 +1,6 @@
-import {Navigate, Route, Routes} from "react-router-dom";
-import {useAuthState} from "react-firebase-hooks/auth";
-import {useCustomContext} from "./hooks/useCustomContext";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCustomContext } from "./hooks/useCustomContext";
 import MainPage from "./containers/MainPage/MainPage";
 import Login from "./components/Login/Login";
 import "./Setup.scss";
@@ -14,7 +14,7 @@ const Setup = () => {
       {user ? (
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="*" element={<Navigate to={'/'} />} />
+          <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
       ) : (
         <Routes>

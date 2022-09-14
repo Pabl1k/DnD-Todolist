@@ -23,7 +23,9 @@ const Board: FC<Props> = ({
     <div className="card">
       <div className="card__row">
         <span className="card__title">{title}</span>
-        {toDoCard && <CreateNewItemButton title="Add new task" onClick={onCreateTask} />}
+        {toDoCard && (
+          <CreateNewItemButton title="Add new task" onClick={onCreateTask} />
+        )}
       </div>
       <div
         className="card__main"

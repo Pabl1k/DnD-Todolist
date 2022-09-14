@@ -1,7 +1,7 @@
 import { createRef, FC, useState } from "react";
-import settingsIcon from "../../assets/icons/settings.svg";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
+import Icon from "../../components/Icon";
 import "./Settings.scss";
 
 interface Props {
@@ -22,7 +22,7 @@ const Settings: FC<Props> = ({ onBackgroundOpen }) => {
         className={`settings__button ${open ? "open" : "closed"}`}
         onClick={() => setOpen(!open)}
       >
-        <img src={settingsIcon} alt="settings" />
+        <Icon name="settings" height={45} width={45} />
       </button>
     </div>
   );

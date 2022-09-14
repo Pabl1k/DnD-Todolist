@@ -1,6 +1,5 @@
 import { FC } from "react";
-import light from "../../../../assets/icons/light-theme.svg";
-import dark from "../../../../assets/icons/dark-theme.svg";
+import Icon from "../../../Icon";
 import "./Theme.scss";
 
 interface Props {
@@ -9,16 +8,16 @@ interface Props {
 
 const Theme: FC<Props> = ({ currentMode }) => {
   return (
-    <div className="theme">
+    <div
+      className="theme"
+      title={`Switch to ${currentMode === "light" ? "dark" : "light"} mode`}
+    >
       <span>Theme</span>
-      <div
-        title={`Switch to ${currentMode === "light" ? "dark" : "light"} mode`}
-      >
-        <img
-          src={currentMode === "light" ? dark : light}
-          alt={`${currentMode} mode`}
-        />
-      </div>
+      <Icon
+        name={currentMode === "light" ? "dark-theme" : "light-theme"}
+        alt={`${currentMode} mode`}
+        className="theme__icon"
+      />
     </div>
   );
 };
