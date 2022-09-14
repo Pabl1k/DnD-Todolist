@@ -1,7 +1,7 @@
-import {Auth} from "firebase/auth";
-import {Firestore} from "firebase/firestore";
+import firebase from "firebase";
 
 export interface IContext {
-  auth: Auth;
-  store: Firestore;
+  firebase: typeof firebase;
+  auth: firebase.auth.Auth;
+  store:  firebase.firestore.Firestore;
 }
