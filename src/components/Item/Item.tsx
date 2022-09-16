@@ -6,8 +6,8 @@ import "./Item.scss";
 
 interface Props {
   data: ItemType;
-  onDragStart: () => void;
-  onDragOver: () => void;
+  onDragStart?: () => void;
+  onDragOver?: () => void;
 }
 
 const Item: FC<Props> = ({ data, onDragStart, onDragOver }) => {

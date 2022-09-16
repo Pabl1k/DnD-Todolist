@@ -9,8 +9,12 @@ const Setup = () => {
   const { auth } = useCustomContext();
   const [user] = useAuthState(auth);
 
+  const backgroundImg = {
+    backgroundImage: `url(${""})`,
+  };
+
   return (
-    <div className="app-setup">
+    <div className="app-setup" style={backgroundImg}>
       {user ? (
         <Routes>
           <Route path="/" element={<MainPage />} />
