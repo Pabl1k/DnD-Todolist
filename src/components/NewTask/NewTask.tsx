@@ -7,10 +7,10 @@ import { COLLECTION } from "../../api/destination";
 import "./NewTask.scss";
 
 interface Props {
-  onNewTaskSave: () => void;
+  onNewTaskClose: () => void;
 }
 
-const NewTask: FC<Props> = ({ onNewTaskSave }) => {
+const NewTask: FC<Props> = ({ onNewTaskClose }) => {
   const { store } = useCustomContext();
   const [values, setValues] = useState({ title: "", description: "" });
   const [error, setError] = useState(false);
@@ -48,14 +48,14 @@ const NewTask: FC<Props> = ({ onNewTaskSave }) => {
 
   const saveNewTask = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !error) {
-      onNewTaskSave();
+      onNewTaskClose();
       await store.collection(COLLECTION.TODO).add(newTask);
     }
   };
 
   const abandonedNewTask = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") {
-      onNewTaskSave();
+      onNewTaskClose();
     }
   };
 

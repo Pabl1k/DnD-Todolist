@@ -8,3 +8,10 @@ export interface ItemType {
   pinned?: boolean;
   createdAt?: firebase.firestore.FieldValue;
 }
+
+export interface UpdateItem {
+  title?: string;
+  description?: string;
+  priority?: boolean;
+  pinned?: boolean;
+}

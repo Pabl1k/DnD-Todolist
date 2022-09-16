@@ -1,7 +1,7 @@
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { ItemType } from "../types/item";
-import { useCustomContext } from "../hooks/useCustomContext";
-import { COLLECTION } from "./destination";
+import { ItemType } from "../../types/item";
+import { useCustomContext } from "../../hooks/useCustomContext";
+import { COLLECTION } from "../destination";
 
 export const useFetchDataAPI = () => {
   const { store } = useCustomContext();

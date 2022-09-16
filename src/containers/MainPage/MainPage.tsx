@@ -3,9 +3,9 @@ import Board from "../../components/Board/Board";
 import Item from "../../components/Item/Item";
 import Settings from "../Settings/Settings";
 import ListSelector from "../ListSelector/ListSelector";
-import { Background as BackgroundSettings } from "../../components/SettingsMenuOption/options/Background/Background";
-import { useFetchDataAPI } from "../../api/getData";
 import NewTask from "../../components/NewTask/NewTask";
+import { Background as BackgroundSettings } from "../../components/SettingsMenuOption/options/Background/Background";
+import { useFetchDataAPI } from "../../api/calls/fetchData";
 import "./MainPage.scss";
 
 const MainPage = () => {
@@ -38,7 +38,7 @@ const MainPage = () => {
             {board.id === "toDo" && addNewTask && (
               <NewTask
                 key="newTask"
-                onNewTaskSave={() => setAddNewTask(false)}
+                onNewTaskClose={() => setAddNewTask(false)}
               />
             )}
             {board.state?.map((state) => (
