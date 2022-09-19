@@ -43,21 +43,26 @@ const MainPage = () => {
   const dragStartHandler = (startBoard: CollectionType, task: TaskType) => {
     setDraggedTask({
       ...draggedTask,
-      startBoard: startBoard,
+      startBoard,
       task,
     });
   };
 
-  const dragEndHandler = async () => {
+  const dragEndHandler = async (boardIndex: number) => {
     const differentBoard = draggedTask?.startBoard !== draggedTask?.endBoard;
 
     if (
-      draggedTask &&
-      draggedTask.startBoard &&
-      draggedTask.endBoard &&
-      draggedTask.task &&
+      draggedTask?.startBoard &&
+      draggedTask?.endBoard &&
+      draggedTask?.task &&
       differentBoard
     ) {
+      const indexToBeRemoved = generalState[boardIndex].state
+        ?.map((x) => x.id)
+        .indexOf(draggedTask.task.id);
+      indexToBeRemoved &&
+        generalState[boardIndex].state?.splice(indexToBeRemoved, 1);
+
       await addTask(draggedTask.endBoard, draggedTask.task);
       await deleteTask(draggedTask.startBoard, draggedTask.task.id);
       setDraggedTask(null);
@@ -71,12 +76,12 @@ const MainPage = () => {
       )}
       <ListSelector />
       <div className="main-page__container">
-        {generalState.map((board) => (
+        {generalState.map((board, boardIndex) => (
           <Board
             key={board.id}
             title={board.title}
             toDoCard={board.id === COLLECTION.TODO}
-            onDragEng={() => dragEndHandler()}
+            onDragEng={() => dragEndHandler(boardIndex)}
             onDragEnter={() => dragEnterHandler(board?.id)}
           >
             {board.state?.map((state) => (
