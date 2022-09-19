@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { ItemType } from "../../types/item";
+import { TaskType } from "../../types/item";
 import { Dots } from "../../common/DotsTag";
 import Icon from "../Icon";
 import "./Item.scss";
 
 interface Props {
-  data: ItemType;
-  onDragStart?: () => void;
+  data: TaskType;
+  onDragStart: () => void;
   onDragOver?: () => void;
 }
 

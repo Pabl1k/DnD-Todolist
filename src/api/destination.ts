@@ -1,7 +1,7 @@
-export type CollectionType = typeof COLLECTION[keyof typeof COLLECTION]
+export type CollectionType = "toDo" | "inProgress" | "done";
 
-export const COLLECTION = {
-  TODO: "toDo",
-  IN_PROGRESS: "inProgress",
-  DONE: "done",
-};
+export enum COLLECTION {
+  TODO = "toDo",
+  IN_PROGRESS = "inProgress",
+  DONE = "done",
+}

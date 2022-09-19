@@ -1,19 +1,20 @@
 import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 import firebase from "firebase";
-import { useCustomContext } from "../../hooks/useCustomContext";
 import { uid } from "../../hooks/uid";
-import { ItemType } from "../../types/item";
+import { TaskType } from "../../types/item";
 import { COLLECTION } from "../../api/destination";
 import "./NewTask.scss";
+import { useManagement } from "../../api/calls/management";
 
 interface Props {
   onNewTaskClose: () => void;
 }
 
 const NewTask: FC<Props> = ({ onNewTaskClose }) => {
-  const { store } = useCustomContext();
   const [values, setValues] = useState({ title: "", description: "" });
   const [error, setError] = useState(false);
+
+  const { addTask } = useManagement();
 
   const inputs = [
     {
@@ -37,7 +38,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
       onBlur: undefined,
     },
   ];
-  const newTask: ItemType = {
+  const newTask: TaskType = {
     id: uid(),
     title: values.title,
     description: values.description,
@@ -49,7 +50,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
   const saveNewTask = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !error) {
       onNewTaskClose();
-      await store.collection(COLLECTION.TODO).add(newTask);
+      await addTask(COLLECTION.TODO, newTask);
     }
   };
 

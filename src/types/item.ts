@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-export interface ItemType {
+export interface TaskType {
   id: string;
   title: string;
   description?: string;
@@ -9,7 +9,7 @@ export interface ItemType {
   createdAt?: firebase.firestore.FieldValue;
 }
 
-export interface UpdateItem {
+export interface UpdateTaskType {
   title?: string;
   description?: string;
   priority?: boolean;
