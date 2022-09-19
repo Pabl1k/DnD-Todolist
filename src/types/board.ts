@@ -1,7 +1,7 @@
-import { ItemType } from "./item";
+import { TaskType } from "./item";
 
 export interface BoardType {
   id: string;
   title: string;
-  items: ItemType[];
+  items: TaskType[];
 }

@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { ItemType } from "../../types/item";
+import { TaskType } from "../../types/item";
 import { Dots } from "../../common/DotsTag";
 import Icon from "../Icon";
 import "./Item.scss";
 
 interface Props {
-  data: ItemType;
+  data: TaskType;
   onDragStart: () => void;
-  onDragOver: () => void;
+  onDragOver?: () => void;
 }
 
 const Item: FC<Props> = ({ data, onDragStart, onDragOver }) => {
