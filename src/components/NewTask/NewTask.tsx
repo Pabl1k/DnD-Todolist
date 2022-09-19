@@ -31,11 +31,9 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
     {
       id: "2",
       placeholder: "Enter description (optional)",
-      autoFocus: false,
       value: values.description,
       onChange: (e: ChangeEvent<HTMLInputElement>) =>
         setValues({ ...values, description: e.currentTarget.value }),
-      onBlur: undefined,
     },
   ];
   const newTask: TaskType = {
@@ -61,7 +59,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
   };
 
   return (
-    <div className="new-task" key={uid()}>
+    <div className="new-task">
       <div className="new-task__inputs-container">
         {inputs.map((x) => (
           <>
