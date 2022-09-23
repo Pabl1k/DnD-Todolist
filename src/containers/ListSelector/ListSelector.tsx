@@ -3,6 +3,9 @@ import CreateNewItemButton from "../../components/CreateNewItemButton/CreateNewI
 import { useCustomContext } from "../../hooks/useCustomContext";
 import "./ListSelector.scss";
 
+/**
+ *  ListSelector component will be for future updates
+ */
 const ListSelector = () => {
   const { auth } = useCustomContext();
 

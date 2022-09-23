@@ -1,12 +1,13 @@
 import { FC } from "react";
-import EN from "../assets/icons/flags/EN.svg";
-import LT from "../assets/icons/flags/LT.svg";
-import RU from "../assets/icons/flags/RU.svg";
-import Dark from "../assets/icons/dark-theme.svg";
-import Google from "../assets/icons/google.svg";
-import Light from "../assets/icons/light-theme.svg";
-import Priority from "../assets/icons/priority.svg";
-import Settings from "../assets/icons/settings.svg";
+import EN from "../../assets/icons/flags/EN.svg";
+import LT from "../../assets/icons/flags/LT.svg";
+import RU from "../../assets/icons/flags/RU.svg";
+import Dark from "../../assets/icons/dark-theme.svg";
+import Google from "../../assets/icons/google.svg";
+import Light from "../../assets/icons/light-theme.svg";
+import Dots from "../../assets/icons/menu-dots.svg";
+import Priority from "../../assets/icons/priority.svg";
+import Settings from "../../assets/icons/settings.svg";
 
 export type IconName =
   | "EnFlag"
@@ -15,6 +16,7 @@ export type IconName =
   | "dark-theme"
   | "google"
   | "light-theme"
+  | "menu-dots"
   | "priority"
   | "settings";
 
@@ -46,6 +48,8 @@ const Icon: FC<Props> = ({ name, className, alt, height = 30, width = 30 }) => {
       return <Google {...props} />;
     case "light-theme":
       return <Light {...props} />;
+    case "menu-dots":
+      return <Dots {...props} />;
     case "priority":
       return <Priority {...props} />;
     case "settings":

@@ -5,6 +5,7 @@ import { TaskType } from "../../types/item";
 import { COLLECTION } from "../../api/destination";
 import "./NewTask.scss";
 import { useManagement } from "../../api/calls/management";
+import TaskInput from "../TaskInput/TaskInput";
 
 interface Props {
   onNewTaskClose: () => void;
@@ -18,7 +19,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
 
   const inputs = [
     {
-      id: "1",
+      id: "titleInput",
       placeholder: "Enter task title",
       autoFocus: true,
       value: values.title,
@@ -29,7 +30,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
       onBlur: () => setError(!values.title),
     },
     {
-      id: "2",
+      id: "descriptionInput",
       placeholder: "Enter description (optional)",
       value: values.description,
       onChange: (e: ChangeEvent<HTMLInputElement>) =>
@@ -62,25 +63,19 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
     <div className="new-task">
       <div className="new-task__inputs-container">
         {inputs.map((x) => (
-          <>
-            <input
-              key={x.placeholder}
-              type="text"
-              className="new-task__input"
-              placeholder={x.placeholder}
-              value={x.value}
-              autoFocus={x.autoFocus}
-              onChange={x.onChange}
-              onBlur={x.onBlur}
-              onKeyDown={(e) => {
-                abandonedNewTask(e);
-                saveNewTask(e);
-              }}
-            />
-            {x.id === "1" && error && (
-              <span className="new-task__error">Title can not be empty</span>
-            )}
-          </>
+          <TaskInput
+            key={x.placeholder}
+            placeholder={x.placeholder}
+            value={x.value}
+            autoFocus={x.autoFocus}
+            showError={x.id === "titleInput" && error}
+            onChange={x.onChange}
+            onBlur={x.onBlur}
+            onKeyDown={(e) => {
+              abandonedNewTask(e);
+              saveNewTask(e);
+            }}
+          />
         ))}
       </div>
     </div>

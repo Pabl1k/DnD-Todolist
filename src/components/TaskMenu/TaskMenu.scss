@@ -1,0 +1,61 @@
+@import "../../styles/index";
+
+.task-menu {
+  background-color: #fff;
+  border-radius: 1rem;
+  border: 2px solid #000;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-top: 170px;
+  margin-left: -50px; // fix
+  box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 2px 20px -2px rgba(0, 0, 0, 0.75);
+
+  &__single {
+    cursor: pointer;
+    min-height: 40px;
+    padding: 0 20px;
+    font-size: 1em;
+
+    span {
+      color: #464646;
+    }
+
+    &:hover {
+      background-color: $dnd-settings-menu-hover-light-color;
+    }
+
+    &:first-child {
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+  }
+}
+
+.delete-check {
+  height: 120px;
+  padding: 30px;
+
+  &__buttons-container {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    font-size: 1.2em;
+    cursor: pointer;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}

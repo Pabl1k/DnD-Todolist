@@ -1,5 +1,7 @@
+@import "../../styles/index";
+
 .item {
-  background-color: #edf1ff;
+  background-color: $dnd-light-theme-item-background;
   border: 2px solid #000;
   border-radius: 10px;
   cursor: grab;
@@ -18,7 +20,7 @@
 
   &__top-container {
     display: flex;
-    margin: 1rem 0 1rem 1rem;
+    margin: 1rem 0 1rem;
     justify-content: space-between;
   }
 
@@ -40,21 +42,27 @@
   }
 
   &__description {
+    text-overflow: ellipsis;
     padding-bottom: 1rem;
     width: 90%;
   }
 
   &__dots-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100%;
   }
 
   &__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    font-size: 1.5em;
-    font-weight: bold;
-    transform: rotate(-90deg);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: darken($dnd-light-theme-item-background, 2%);
+    }
   }
 }

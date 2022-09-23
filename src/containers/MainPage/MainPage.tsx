@@ -2,7 +2,6 @@ import { useState } from "react";
 import Board from "../Board/Board";
 import Item from "../../components/Item/Item";
 import Settings from "../Settings/Settings";
-import ListSelector from "../ListSelector/ListSelector";
 import { Background as BackgroundSettings } from "../../components/SettingsMenuOption/options/Background/Background";
 import { useFetchDataAPI } from "../../api/calls/fetchData";
 import { useManagement } from "../../api/calls/management";
@@ -60,8 +59,8 @@ const MainPage = () => {
       const indexToBeRemoved = generalState[boardIndex].state
         ?.map((x) => x.id)
         .indexOf(draggedTask.task.id);
-      indexToBeRemoved &&
-        generalState[boardIndex].state?.splice(indexToBeRemoved, 1);
+
+      generalState[boardIndex].state?.splice(indexToBeRemoved!, 1);
 
       await addTask(draggedTask.endBoard, draggedTask.task);
       await deleteTask(draggedTask.startBoard, draggedTask.task.id);
@@ -74,7 +73,6 @@ const MainPage = () => {
       {openBackgroundSettings && (
         <BackgroundSettings onClose={() => setOpenBackgroundSettings(false)} />
       )}
-      <ListSelector />
       <div className="main-page__container">
         {generalState.map((board, boardIndex) => (
           <Board
@@ -88,6 +86,7 @@ const MainPage = () => {
               <Item
                 key={state.id}
                 data={state}
+                collection={board.id}
                 onDragStart={() => dragStartHandler(board.id, state)}
               />
             ))}

@@ -1,6 +1,6 @@
 import { useCustomContext } from "../../hooks/useCustomContext";
 import firebase from "firebase";
-import Icon from "../Icon";
+import Icon from "../Icon/Icon";
 import "./Login.scss";
 
 const Login = () => {

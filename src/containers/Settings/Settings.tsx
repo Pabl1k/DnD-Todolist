@@ -1,7 +1,7 @@
 import { createRef, FC, useState } from "react";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import SettingsModal from "../../components/SettingsModal/SettingsModal";
-import Icon from "../../components/Icon";
+import Icon from "../../components/Icon/Icon";
 import "./Settings.scss";
 
 interface Props {

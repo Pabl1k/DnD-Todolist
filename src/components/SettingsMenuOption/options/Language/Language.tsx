@@ -1,6 +1,6 @@
 import { FC } from "react";
+import Icon, { IconName } from "../../../Icon/Icon";
 import "./Language.scss";
-import Icon, { IconName } from "../../../Icon";
 
 interface ILanguages {
   id: number;
