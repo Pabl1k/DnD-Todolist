@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import Board from "../Board/Board";
 import Item from "../../components/Item/Item";
 import Settings from "../Settings/Settings";
-import { Background as BackgroundSettings } from "../../components/SettingsMenuOption/options/Background/Background";
 import { useFetchDataAPI } from "../../api/calls/fetchData";
 import { useManagement } from "../../api/calls/management";
 import { TaskType } from "../../types/item";
@@ -15,7 +14,11 @@ interface IDraggedTask {
   task?: TaskType;
 }
 
-const MainPage = () => {
+interface Props {
+  setBackgroundColor: (color: string) => void;
+}
+
+const MainPage: FC<Props> = ({ setBackgroundColor }) => {
   const { toDoState, inProgressState, doneState } = useFetchDataAPI();
   const generalState = [
     { id: COLLECTION.TODO as CollectionType, title: "To do", state: toDoState },
@@ -27,7 +30,6 @@ const MainPage = () => {
     { id: COLLECTION.DONE as CollectionType, title: "Done", state: doneState },
   ];
 
-  const [openBackgroundSettings, setOpenBackgroundSettings] = useState(false);
   const [draggedTask, setDraggedTask] = useState<IDraggedTask | null>(null);
 
   const { addTask, deleteTask } = useManagement();
@@ -70,9 +72,6 @@ const MainPage = () => {
 
   return (
     <section className="main-page">
-      {openBackgroundSettings && (
-        <BackgroundSettings onClose={() => setOpenBackgroundSettings(false)} />
-      )}
       <div className="main-page__container">
         {generalState.map((board, boardIndex) => (
           <Board
@@ -93,7 +92,7 @@ const MainPage = () => {
           </Board>
         ))}
       </div>
-      <Settings onBackgroundOpen={() => setOpenBackgroundSettings(true)} />
+      <Settings setBackgroundColor={setBackgroundColor} />
     </section>
   );
 };

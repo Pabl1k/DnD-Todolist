@@ -1,11 +1,21 @@
-// light theme
-$dnd-light-theme-background: #dce4ff;
-$dnd-light-color: #0e0e0e;
-$dnd-settings-menu-hover-light-color: #f3f3f3;
-$dnd-light-theme-item-background: #edf1ff;
+$dnd-light-blue: #d7e8fc;
+$dnd-blue: #8dc5f8;
+$dnd-white: #ffffff;
+$dnd-black: #000000;
+$dnd-light-black: #171710;
+$dnd-dark-blue: #004e7e;
 
-// dark theme
+$dnd-app-background: $dnd-white;
+$dnd-board-background: $dnd-blue;
+$dnd-item-background: $dnd-light-blue;
+
+$dnd-border: $dnd-black;
+
+$dnd-color: $dnd-light-black;
+$dnd-board-title: $dnd-blue;
 
 // font size
 $dnd-small-font-size: 16px;
 $dnd-large-font-size: 24px;
+
+$dnd-border-size: 0.125em;

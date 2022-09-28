@@ -1,20 +1,32 @@
-import { createRef, FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { useManagement } from "../../../../api/calls/management";
 import "./Background.scss";
-import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 
 interface Props {
-  onClose: () => void;
+  setBackgroundColor: (color: string) => void;
 }
 
-export const Background: FC<Props> = ({ onClose }) => {
-  const modalRef = createRef<HTMLDivElement>();
-  useOutsideClick(modalRef, onClose);
+export const Background: FC<Props> = ({ setBackgroundColor }) => {
+  const { updateSettings } = useManagement();
+  const [color, setColor] = useState("");
+
+  useEffect(() => {
+    if (color) {
+      updateSettings({ backgroundColor: color });
+    }
+  }, [color]);
 
   return (
     <div className="background">
-      <div className="background__modal" ref={modalRef}>
-        Lorem ipsum dolor sit amet.
-      </div>
+      <input
+        type="color"
+        name="palette"
+        onChange={(e) => {
+          setColor(e.currentTarget.value);
+          setBackgroundColor(e.currentTarget.value);
+        }}
+      />
+      <label htmlFor="palette">Select background color</label>
     </div>
   );
 };

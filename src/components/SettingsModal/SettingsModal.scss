@@ -3,8 +3,8 @@
 .settings-modal {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 2px solid #000;
+  background: $dnd-item-background;
+  border: $dnd-border-size solid $dnd-border;
   border-radius: 1rem;
   box-shadow: -3px -4px 24px 0px rgba(86, 100, 153, 0.75);
   -webkit-box-shadow: -3px -4px 24px 0px rgba(86, 100, 153, 0.75);
@@ -13,7 +13,7 @@
   width: 15vw;
 
   &__title {
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid $dnd-border;
     padding: 0.8rem 0.7rem;
 
     span {
@@ -30,24 +30,24 @@
     width: 100%;
     font-size: 1em;
 
+    span {
+      color: $dnd-color;
+    }
+
     &.active {
-      background-color: $dnd-settings-menu-hover-light-color;
+      background-color: $dnd-board-background;
 
       span {
-        color: $dnd-light-color;
+        color: $dnd-black;
       }
     }
 
-    span {
-      color: #464646;
-    }
-
     &:hover {
-      background-color: $dnd-settings-menu-hover-light-color;
+      background-color: $dnd-board-background;
       padding-left: 1.2rem;
 
       span {
-        color: $dnd-light-color;
+        color: $dnd-black;
       }
     }
 

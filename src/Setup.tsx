@@ -1,52 +1,40 @@
+import { createContext, useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCustomContext } from "./hooks/useCustomContext";
 import MainPage from "./containers/MainPage/MainPage";
 import Login from "./components/Login/Login";
-import { createContext } from "react";
 import { ILoadingContext } from "./types/Loading";
-import "./Setup.scss";
 import { useLoading } from "./hooks/useLoading";
+import { useFetchDataAPI } from "./api/calls/fetchData";
+import "./Setup.scss";
 
 export const LoadingContext = createContext<ILoadingContext | null>(null);
 
 const Setup = () => {
   const { auth } = useCustomContext();
   const [user] = useAuthState(auth);
+  const loadingContextState = useLoading();
+  const { settings } = useFetchDataAPI();
 
-  const backgroundImg = {
-    backgroundImage: `url(${""})`,
-  };
+  const color = settings?.map((x) => x.backgroundColor).join();
+  const [backgroundColor, setBackgroundColor] = useState<string>("");
 
-  const {
-    addTask,
-    updateTask,
-    deleteTask,
-    setAddTask,
-    setUpdateTask,
-    setDeleteTask,
-    clearLoadings,
-  } = useLoading();
-
-  const loadingContextState = {
-    addTask,
-    updateTask,
-    deleteTask,
-    setAddTask,
-    setUpdateTask,
-    setDeleteTask,
-    clearLoadings,
-  };
+  useEffect(() => {
+    if (color) {
+      setBackgroundColor(color);
+    }
+  }, [color]);
 
   return (
-    <div className="app-setup" style={backgroundImg}>
+    <div className="app-setup" style={{ backgroundColor }}>
       {user ? (
         <Routes>
           <Route
             path="/"
             element={
               <LoadingContext.Provider value={loadingContextState}>
-                <MainPage />
+                <MainPage setBackgroundColor={setBackgroundColor} />
               </LoadingContext.Provider>
             }
           />

@@ -5,10 +5,10 @@ import Icon from "../../components/Icon/Icon";
 import "./Settings.scss";
 
 interface Props {
-  onBackgroundOpen: () => void;
+  setBackgroundColor: (color: string) => void;
 }
 
-const Settings: FC<Props> = ({ onBackgroundOpen }) => {
+const Settings: FC<Props> = ({ setBackgroundColor }) => {
   const [open, setOpen] = useState(false);
 
   const modalRef = createRef<HTMLDivElement>();
@@ -16,18 +16,16 @@ const Settings: FC<Props> = ({ onBackgroundOpen }) => {
 
   return (
     <div className="settings" ref={modalRef}>
-      <SettingsModal open={open} onBackgroundOpen={onBackgroundOpen} />
+      <SettingsModal open={open} setBackgroundColor={setBackgroundColor} />
       <button
         type="button"
         className={`settings__button ${open ? "open" : "closed"}`}
         onClick={() => setOpen(!open)}
       >
-        <Icon name="settings" height={45} width={45} />
+        <Icon name="settings" height={50} width={50} />
       </button>
     </div>
   );
 };
 
 export default Settings;
-
-// first visit notification. save in LS

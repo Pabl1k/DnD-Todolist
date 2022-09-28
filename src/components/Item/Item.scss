@@ -1,8 +1,8 @@
 @import "../../styles/index";
 
 .item {
-  background-color: $dnd-light-theme-item-background;
-  border: 2px solid #000;
+  background-color: $dnd-item-background;
+  border: $dnd-border-size solid $dnd-border;
   border-radius: 10px;
   cursor: grab;
   display: flex;
@@ -62,7 +62,7 @@
     border-radius: 50%;
 
     &:hover {
-      background-color: darken($dnd-light-theme-item-background, 2%);
+      background-color: darken($dnd-item-background, 2%);
     }
   }
 }

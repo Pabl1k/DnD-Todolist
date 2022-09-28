@@ -1,3 +1,5 @@
+@import "../../styles/index";
+
 .card {
   display: flex;
   flex-direction: column;
@@ -13,13 +15,13 @@
   }
 
   &__title {
-    color: #000;
+    color: $dnd-board-title;
     font-size: 2em;
     font-weight: 600;
   }
 
   &__main {
-    background-color: #fff;
+    background-color: $dnd-board-background;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -35,20 +37,21 @@
 
     // scrollbar
     &::-webkit-scrollbar {
-      width: 1em;
+      width: 1rem;
     }
 
     &::-webkit-scrollbar-track {
-      background-color: #1c4288;
+      border-radius: 1rem;
+      margin: 1rem 0;
     }
 
     &::-webkit-scrollbar-thumb {
       background-color: #37f9b4;
-      border-radius: 1vw;
-      border: 0.3em solid #1c4288;
+      border-radius: 1rem;
+      border: 0.3rem solid $dnd-board-background;
 
       &:hover {
-        background-color: darken(#37f9b4, 15%);
+        background-color: darken(#37f9b4, 10%);
       }
     }
   }

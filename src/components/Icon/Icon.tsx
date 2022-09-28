@@ -7,7 +7,11 @@ import Google from "../../assets/icons/google.svg";
 import Light from "../../assets/icons/light-theme.svg";
 import Dots from "../../assets/icons/menu-dots.svg";
 import Priority from "../../assets/icons/priority.svg";
-import Settings from "../../assets/icons/settings.svg";
+import Settings from "../../assets/icons/light-settings.svg";
+
+/**
+ * TODO: try react-svg with single import
+ */
 
 export type IconName =
   | "EnFlag"
