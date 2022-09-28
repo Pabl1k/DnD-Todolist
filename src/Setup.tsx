@@ -7,6 +7,7 @@ import Login from "./components/Login/Login";
 import { ILoadingContext } from "./types/Loading";
 import { useLoading } from "./hooks/useLoading";
 import { useFetchDataAPI } from "./api/calls/fetchData";
+import Settings from "./containers/Settings/Settings";
 import "./Setup.scss";
 
 export const LoadingContext = createContext<ILoadingContext | null>(null);
@@ -34,7 +35,8 @@ const Setup = () => {
             path="/"
             element={
               <LoadingContext.Provider value={loadingContextState}>
-                <MainPage setBackgroundColor={setBackgroundColor} />
+                <MainPage />
+                <Settings setBackgroundColor={setBackgroundColor} />
               </LoadingContext.Provider>
             }
           />
