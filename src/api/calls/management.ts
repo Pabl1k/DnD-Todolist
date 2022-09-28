@@ -1,6 +1,7 @@
 import { TaskType, UpdateTaskType } from "../../types/item";
 import { useCustomContext } from "../../hooks/useCustomContext";
-import { CollectionType } from "../destination";
+import { COLLECTION, CollectionType } from "../destination";
+import { Settings } from "../../types/settings";
 
 export const useManagement = () => {
   const { store } = useCustomContext();
@@ -19,6 +20,13 @@ export const useManagement = () => {
       .limit(1)
       .where("id", "==", taskId)
       .get();
+
+    await snapshot.docs[0].ref.update(update);
+  };
+
+  const updateSettings = async (update: Settings) => {
+    const snapshot = await store.collection(COLLECTION.SETTINGS).limit(1).get();
+
     await snapshot.docs[0].ref.update(update);
   };
 
@@ -35,6 +43,7 @@ export const useManagement = () => {
   return {
     addTask,
     updateTask,
+    updateSettings,
     deleteTask,
   };
 };

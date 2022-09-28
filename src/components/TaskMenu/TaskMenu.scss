@@ -1,7 +1,7 @@
 @import "../../styles/index";
 
 .task-menu {
-  background-color: #fff;
+  background-color: $dnd-item-background;
   border-radius: 1rem;
   border: 2px solid #000;
   position: absolute;
@@ -24,7 +24,7 @@
     }
 
     &:hover {
-      background-color: $dnd-settings-menu-hover-light-color;
+      background-color: $dnd-board-background;
     }
 
     &:first-child {

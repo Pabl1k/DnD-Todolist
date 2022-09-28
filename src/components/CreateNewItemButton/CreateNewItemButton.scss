@@ -1,8 +1,8 @@
-.create-new-item-button {
-  --button--color: #ff7171;
+@import "../../styles/index";
 
-  background-color: #fff;
-  border: 3px solid var(--button--color);
+.create-new-item-button {
+  background-color: $dnd-board-title;
+  border: $dnd-border-size solid $dnd-border;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -13,14 +13,10 @@
 
   span {
     font-size: 3em;
-    color: var(--button--color);
+    color: $dnd-black;
   }
 
   &:hover {
     margin-top: -1px;
-
-    span {
-      color: darken(#ff7171, 10%);
-    }
   }
 }
