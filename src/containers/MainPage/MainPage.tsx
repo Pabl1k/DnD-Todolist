@@ -1,7 +1,6 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import Board from "../Board/Board";
 import Item from "../../components/Item/Item";
-import Settings from "../Settings/Settings";
 import { useFetchDataAPI } from "../../api/calls/fetchData";
 import { useManagement } from "../../api/calls/management";
 import { TaskType } from "../../types/item";
@@ -14,11 +13,7 @@ interface IDraggedTask {
   task?: TaskType;
 }
 
-interface Props {
-  setBackgroundColor: (color: string) => void;
-}
-
-const MainPage: FC<Props> = ({ setBackgroundColor }) => {
+const MainPage = () => {
   const { toDoState, inProgressState, doneState } = useFetchDataAPI();
   const generalState = [
     { id: COLLECTION.TODO as CollectionType, title: "To do", state: toDoState },
@@ -34,18 +29,18 @@ const MainPage: FC<Props> = ({ setBackgroundColor }) => {
 
   const { addTask, deleteTask } = useManagement();
 
-  const dragEnterHandler = (endBoard: CollectionType) => {
-    setDraggedTask({
-      ...draggedTask,
-      endBoard,
-    });
-  };
-
   const dragStartHandler = (startBoard: CollectionType, task: TaskType) => {
     setDraggedTask({
       ...draggedTask,
       startBoard,
       task,
+    });
+  };
+
+  const dragEnterHandler = (endBoard: CollectionType) => {
+    setDraggedTask({
+      ...draggedTask,
+      endBoard,
     });
   };
 
@@ -78,8 +73,8 @@ const MainPage: FC<Props> = ({ setBackgroundColor }) => {
             key={board.id}
             title={board.title}
             toDoCard={board.id === COLLECTION.TODO}
-            onDragEng={() => dragEndHandler(boardIndex)}
             onDragEnter={() => dragEnterHandler(board?.id)}
+            onDragEnd={() => dragEndHandler(boardIndex)}
           >
             {board.state?.map((state) => (
               <Item
@@ -92,7 +87,6 @@ const MainPage: FC<Props> = ({ setBackgroundColor }) => {
           </Board>
         ))}
       </div>
-      <Settings setBackgroundColor={setBackgroundColor} />
     </section>
   );
 };
