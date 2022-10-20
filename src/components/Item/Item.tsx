@@ -13,9 +13,7 @@ interface Props {
 }
 
 const applyOpacity = (e: DragEvent<HTMLDivElement>, start = true) => {
-  return start
-    ? (e.currentTarget.style.opacity = "0.3")
-    : (e.currentTarget.style.opacity = "1");
+  return (e.currentTarget.style.opacity = start ? "0.3" : "1");
 };
 
 const Item: FC<Props> = ({ data, collection, onDragStart }) => {
