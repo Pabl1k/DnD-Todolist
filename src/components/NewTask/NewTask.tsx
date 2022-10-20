@@ -3,9 +3,9 @@ import firebase from "firebase";
 import { uid } from "../../hooks/uid";
 import { TaskType } from "../../types/item";
 import { COLLECTION } from "../../api/destination";
-import "./NewTask.scss";
 import { useManagement } from "../../api/calls/management";
 import TaskInput from "../TaskInput/TaskInput";
+import "./NewTask.scss";
 
 interface Props {
   onNewTaskClose: () => void;
@@ -46,14 +46,11 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
   };
 
-  const saveNewTask = async (e: KeyboardEvent<HTMLInputElement>) => {
+  const onKeyPress = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !error) {
       onNewTaskClose();
       await addTask(COLLECTION.TODO, newTask);
     }
-  };
-
-  const abandonedNewTask = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") {
       onNewTaskClose();
     }
@@ -71,10 +68,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
             showError={x.id === "titleInput" && error}
             onChange={x.onChange}
             onBlur={x.onBlur}
-            onKeyDown={(e) => {
-              abandonedNewTask(e);
-              saveNewTask(e);
-            }}
+            onKeyDown={(e) => onKeyPress(e)}
           />
         ))}
       </div>

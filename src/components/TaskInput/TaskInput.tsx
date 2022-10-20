@@ -1,14 +1,14 @@
-import { ChangeEvent, FC, KeyboardEvent } from "react";
+import { FC, ChangeEventHandler, KeyboardEventHandler } from "react";
 import "./TaskInput.scss";
 
 interface Props {
-  placeholder: string;
+  placeholder?: string;
   value?: string;
   autoFocus?: boolean;
-  showError: boolean;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  showError?: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   onBlur?: () => void;
-  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onKeyDown: KeyboardEventHandler<HTMLInputElement>;
 }
 
 const TaskInput: FC<Props> = ({

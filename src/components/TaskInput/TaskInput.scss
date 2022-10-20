@@ -1,8 +1,10 @@
+@import "../../styles/index";
+
 .task-input {
   height: 50px;
   width: 90%;
   border: none;
-  background-color: #edf1ff;
+  background-color: $dnd-item-background;
   border-bottom: 1px solid black;
   outline: none;
   font-size: 1.2em;

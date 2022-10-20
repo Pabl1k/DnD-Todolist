@@ -3,6 +3,7 @@ import { ITaskMenuData, TaskType } from "../../types/item";
 import { CollectionType } from "../../api/destination";
 import Icon from "../Icon/Icon";
 import TaskMenu from "../TaskMenu/TaskMenu";
+import EditItem from "../EditItem/EditItem";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import "./Item.scss";
 
@@ -52,7 +53,16 @@ const Item: FC<Props> = ({ data, collection, onDragStart }) => {
       onDragEndCapture={(e) => applyOpacity(e, false)}
     >
       {editMode ? (
-        <div>edit mode</div>
+        <EditItem
+          itemId={data.id}
+          title={title}
+          description={description}
+          collection={collection}
+          onClose={() => {
+            setEditMode(false)
+            setMenuOpen(false)
+          }}
+        />
       ) : (
         <div className="item__container">
           <div className="item__top-container">
@@ -66,20 +76,23 @@ const Item: FC<Props> = ({ data, collection, onDragStart }) => {
           <div className="item__description">{description}</div>
         </div>
       )}
-      <div className="item__dots-container" ref={modalRef}>
-        <button className="item__dots" onClick={menuClickHandler}>
-          <Icon name="menu-dots" />
-        </button>
-        {menuOpen && taskMenuData && (
-          <TaskMenu
-            collection={taskMenuData.collection}
-            taskId={taskMenuData.taskId}
-            currentPriority={taskMenuData.priority}
-            closeMenu={() => setMenuOpen(false)}
-            onEditMode={() => setEditMode(true)}
-          />
-        )}
-      </div>
+
+      {!editMode && (
+        <div className="item__dots-container" ref={modalRef}>
+          <button className="item__dots" onClick={menuClickHandler}>
+            <Icon name="menu-dots" />
+          </button>
+          {menuOpen && taskMenuData && (
+            <TaskMenu
+              collection={taskMenuData.collection}
+              taskId={taskMenuData.taskId}
+              currentPriority={taskMenuData.priority}
+              closeMenu={() => setMenuOpen(false)}
+              onEditMode={() => setEditMode(true)}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };

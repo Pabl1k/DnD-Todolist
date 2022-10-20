@@ -1,5 +1,7 @@
+@import "../../styles/index";
+
 .new-task {
-  background-color: #edf1ff;
+  background-color: $dnd-item-background;
   border: 2px solid #000;
   border-radius: 10px;
   cursor: grab;
