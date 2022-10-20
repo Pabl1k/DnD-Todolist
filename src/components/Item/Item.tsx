@@ -1,4 +1,4 @@
-import { createRef, FC, useEffect, useState } from "react";
+import { FC, DragEvent, createRef, useEffect, useState } from "react";
 import { ITaskMenuData, TaskType } from "../../types/item";
 import { CollectionType } from "../../api/destination";
 import Icon from "../Icon/Icon";
@@ -10,10 +10,15 @@ interface Props {
   data: TaskType;
   collection: CollectionType;
   onDragStart: () => void;
-  onDragOver?: () => void;
 }
 
-const Item: FC<Props> = ({ data, collection, onDragStart, onDragOver }) => {
+const applyOpacity = (e: DragEvent<HTMLDivElement>, start = true) => {
+  return start
+    ? (e.currentTarget.style.opacity = "0.3")
+    : (e.currentTarget.style.opacity = "1");
+};
+
+const Item: FC<Props> = ({ data, collection, onDragStart }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [taskMenuData, setTaskMenuData] = useState<ITaskMenuData | null>(null);
   const [editMode, setEditMode] = useState(false);
@@ -23,7 +28,7 @@ const Item: FC<Props> = ({ data, collection, onDragStart, onDragOver }) => {
 
   const { title, description, priority } = data;
 
-  const dotsClickHandler = () => {
+  const menuClickHandler = () => {
     setMenuOpen(!menuOpen);
 
     setTaskMenuData({
@@ -45,7 +50,8 @@ const Item: FC<Props> = ({ data, collection, onDragStart, onDragOver }) => {
       className="item"
       draggable
       onDragStart={onDragStart}
-      onDragOver={onDragOver}
+      onDragCapture={(e) => applyOpacity(e)}
+      onDragEndCapture={(e) => applyOpacity(e, false)}
     >
       {editMode ? (
         <div>edit mode</div>
@@ -63,7 +69,7 @@ const Item: FC<Props> = ({ data, collection, onDragStart, onDragOver }) => {
         </div>
       )}
       <div className="item__dots-container" ref={modalRef}>
-        <button className="item__dots" onClick={dotsClickHandler}>
+        <button className="item__dots" onClick={menuClickHandler}>
           <Icon name="menu-dots" />
         </button>
         {menuOpen && taskMenuData && (

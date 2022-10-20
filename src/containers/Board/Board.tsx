@@ -7,16 +7,16 @@ interface Props {
   title: string;
   toDoCard?: boolean;
   children?: ReactNode;
-  onDragEng: () => void;
   onDragEnter: () => void;
+  onDragEnd: () => void;
 }
 
 const Board: FC<Props> = ({
   title,
   toDoCard,
   children,
-  onDragEng,
   onDragEnter,
+  onDragEnd,
 }) => {
   const [addNewTask, setAddNewTask] = useState(false);
 
@@ -33,8 +33,8 @@ const Board: FC<Props> = ({
       </div>
       <div
         className="card__main"
-        onDragEnd={onDragEng}
         onDragEnter={onDragEnter}
+        onDragEnd={onDragEnd}
       >
         {toDoCard && addNewTask && (
           <NewTask key="newTask" onNewTaskClose={() => setAddNewTask(false)} />

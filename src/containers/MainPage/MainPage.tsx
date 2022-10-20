@@ -29,18 +29,18 @@ const MainPage = () => {
 
   const { addTask, deleteTask } = useManagement();
 
-  const dragEnterHandler = (endBoard: CollectionType) => {
-    setDraggedTask({
-      ...draggedTask,
-      endBoard,
-    });
-  };
-
   const dragStartHandler = (startBoard: CollectionType, task: TaskType) => {
     setDraggedTask({
       ...draggedTask,
       startBoard,
       task,
+    });
+  };
+
+  const dragEnterHandler = (endBoard: CollectionType) => {
+    setDraggedTask({
+      ...draggedTask,
+      endBoard,
     });
   };
 
@@ -73,8 +73,8 @@ const MainPage = () => {
             key={board.id}
             title={board.title}
             toDoCard={board.id === COLLECTION.TODO}
-            onDragEng={() => dragEndHandler(boardIndex)}
             onDragEnter={() => dragEnterHandler(board?.id)}
+            onDragEnd={() => dragEndHandler(boardIndex)}
           >
             {board.state?.map((state) => (
               <Item

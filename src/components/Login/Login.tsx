@@ -3,6 +3,10 @@ import firebase from "firebase";
 import Icon from "../Icon/Icon";
 import "./Login.scss";
 
+/**
+ *  TODO on login modal close shoot out an error
+ */
+
 const Login = () => {
   const { auth } = useCustomContext();
 
