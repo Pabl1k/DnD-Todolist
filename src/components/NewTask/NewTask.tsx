@@ -39,8 +39,8 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
   ];
   const newTask: TaskType = {
     id: uid(),
-    title: values.title,
-    description: values.description,
+    title: values.title.trim(),
+    description: values.description.trim(),
     priority: false,
     pinned: false,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
