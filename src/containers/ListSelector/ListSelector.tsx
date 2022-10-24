@@ -1,5 +1,5 @@
-import SelectorItem from "../../components/SelectorItem/SelectorItem";
 import CreateNewItemButton from "../../components/CreateNewItemButton/CreateNewItemButton";
+import SelectorItem from "../../components/SelectorItem/SelectorItem";
 import { useCustomContext } from "../../hooks/useCustomContext";
 import "./ListSelector.scss";
 

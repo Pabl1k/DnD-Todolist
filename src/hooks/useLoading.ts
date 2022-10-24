@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ILoading } from "../types/Loading";
 import { initialLoadingState } from "../common/LoadingState";
+import { ILoading } from "../types/Loading";
 
 export const useLoading = () => {
   const [loading, setLoading] = useState<ILoading>(initialLoadingState);

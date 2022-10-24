@@ -1,13 +1,13 @@
 import { FC } from "react";
+import Dark from "../../assets/icons/dark-theme.svg";
 import EN from "../../assets/icons/flags/EN.svg";
 import LT from "../../assets/icons/flags/LT.svg";
 import RU from "../../assets/icons/flags/RU.svg";
-import Dark from "../../assets/icons/dark-theme.svg";
 import Google from "../../assets/icons/google.svg";
+import Settings from "../../assets/icons/light-settings.svg";
 import Light from "../../assets/icons/light-theme.svg";
 import Dots from "../../assets/icons/menu-dots.svg";
 import Priority from "../../assets/icons/priority.svg";
-import Settings from "../../assets/icons/light-settings.svg";
 
 /**
  * TODO: try react-svg with single import

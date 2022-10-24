@@ -1,18 +1,19 @@
-import { useCustomContext } from "../../hooks/useCustomContext";
 import firebase from "firebase";
+import { useCustomContext } from "../../hooks/useCustomContext";
 import Icon from "../Icon/Icon";
 import "./Login.scss";
-
-/**
- *  TODO on login modal close shoot out an error
- */
 
 const Login = () => {
   const { auth } = useCustomContext();
 
   const loginHandler = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await auth.signInWithPopup(provider);
+    } catch (ex) {
+      alert("Please try to login again");
+      console.error(ex);
+    }
   };
 
   return (

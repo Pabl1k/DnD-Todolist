@@ -1,7 +1,7 @@
-import { TaskType, UpdateTaskType } from "../../types/item";
 import { useCustomContext } from "../../hooks/useCustomContext";
-import { COLLECTION, CollectionType } from "../destination";
+import { TaskType, UpdateTaskType } from "../../types/item";
 import { Settings } from "../../types/settings";
+import { COLLECTION, CollectionType } from "../destination";
 
 export const useManagement = () => {
   const { store } = useCustomContext();

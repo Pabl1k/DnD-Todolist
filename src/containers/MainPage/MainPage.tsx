@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Board from "../Board/Board";
-import Item from "../../components/Item/Item";
 import { useFetchDataAPI } from "../../api/calls/fetchData";
 import { useManagement } from "../../api/calls/management";
-import { TaskType } from "../../types/item";
 import { COLLECTION, CollectionType } from "../../api/destination";
+import Item from "../../components/Item/Item";
+import { TaskType } from "../../types/item";
+import Board from "../Board/Board";
 import "./MainPage.scss";
 
 interface IDraggedTask {

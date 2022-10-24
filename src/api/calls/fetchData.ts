@@ -1,8 +1,8 @@
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { TaskType } from "../../types/item";
 import { useCustomContext } from "../../hooks/useCustomContext";
-import { COLLECTION } from "../destination";
+import { TaskType } from "../../types/item";
 import { Settings as SettingsType } from "../../types/settings";
+import { COLLECTION } from "../destination";
 
 export const useFetchDataAPI = () => {
   const { store } = useCustomContext();
@@ -20,20 +20,21 @@ export const useFetchDataAPI = () => {
     store.collection(COLLECTION.DONE).orderBy("priority", "desc")
   );
 
-  const [settings] = useCollectionData<SettingsType>(
+  const [settings, settingsLoading] = useCollectionData<SettingsType>(
     store.collection(COLLECTION.SETTINGS)
   );
 
+  const loading =
+    toDoLoading || inProgressLoading || doneLoading || settingsLoading;
+
   return {
     toDoState,
-    toDoLoading,
     toDoError,
     inProgressState,
-    inProgressLoading,
     inProgressError,
     doneState,
-    doneLoading,
     doneError,
     settings,
+    loading,
   };
 };

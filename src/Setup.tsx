@@ -1,22 +1,24 @@
 import { createContext, useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCustomContext } from "./hooks/useCustomContext";
-import MainPage from "./containers/MainPage/MainPage";
-import Login from "./components/Login/Login";
-import { ILoadingContext } from "./types/Loading";
-import { useLoading } from "./hooks/useLoading";
-import { useFetchDataAPI } from "./api/calls/fetchData";
-import Settings from "./containers/Settings/Settings";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./Setup.scss";
+import { useFetchDataAPI } from "./api/calls/fetchData";
+import Spinner from "./components/Loaders/Spinner/Spinner";
+import Login from "./components/Login/Login";
+import Logout from "./components/Logout/Logout";
+import MainPage from "./containers/MainPage/MainPage";
+import Settings from "./containers/Settings/Settings";
+import { useCustomContext } from "./hooks/useCustomContext";
+import { useLoading } from "./hooks/useLoading";
+import { ILoadingContext } from "./types/Loading";
 
 export const LoadingContext = createContext<ILoadingContext | null>(null);
 
 const Setup = () => {
   const { auth } = useCustomContext();
-  const [user] = useAuthState(auth);
+  const [authorized, authorizedLoading] = useAuthState(auth);
   const loadingContextState = useLoading();
-  const { settings } = useFetchDataAPI();
+  const { settings, loading: dataLoading } = useFetchDataAPI();
 
   const color = settings?.map((x) => x.backgroundColor).join();
   const [backgroundColor, setBackgroundColor] = useState<string>("");
@@ -27,14 +29,19 @@ const Setup = () => {
     }
   }, [color]);
 
+  if (authorizedLoading || dataLoading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="app-setup" style={{ backgroundColor }}>
-      {user ? (
+      {authorized ? (
         <Routes>
           <Route
             path="/"
             element={
               <LoadingContext.Provider value={loadingContextState}>
+                <Logout />
                 <MainPage />
                 <Settings setBackgroundColor={setBackgroundColor} />
               </LoadingContext.Provider>
