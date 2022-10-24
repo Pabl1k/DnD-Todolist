@@ -2,12 +2,12 @@ import { createContext } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import firebase from "firebase";
-import "firebase/firestore";
 import "firebase/auth";
-import { firebaseConfig } from "./api/config";
-import { IContext } from "./types/context";
+import "firebase/firestore";
 import Setup from "./Setup";
+import { firebaseConfig } from "./api/config";
 import "./styles/index.scss";
+import { IContext } from "./types/context";
 
 firebase.initializeApp(firebaseConfig);
 

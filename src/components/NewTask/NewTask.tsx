@@ -1,9 +1,9 @@
-import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 import firebase from "firebase";
+import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
+import { useManagement } from "../../api/calls/management";
+import { COLLECTION } from "../../api/destination";
 import { uid } from "../../hooks/uid";
 import { TaskType } from "../../types/item";
-import { COLLECTION } from "../../api/destination";
-import { useManagement } from "../../api/calls/management";
 import TaskInput from "../TaskInput/TaskInput";
 import "./NewTask.scss";
 

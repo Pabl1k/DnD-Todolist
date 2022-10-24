@@ -1,7 +1,7 @@
 import { FC, ChangeEvent, KeyboardEvent, useState } from "react";
-import TaskInput from "../TaskInput/TaskInput";
-import { CollectionType } from "../../api/destination";
 import { useManagement } from "../../api/calls/management";
+import { CollectionType } from "../../api/destination";
+import TaskInput from "../TaskInput/TaskInput";
 import "./EditItem.scss";
 
 interface Props {

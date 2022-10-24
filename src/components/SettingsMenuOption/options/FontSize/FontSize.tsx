@@ -1,5 +1,5 @@
-import "./FontSize.scss";
 import CircleCheckbox from "../../../CircleCheckbox/CircleCheckbox";
+import "./FontSize.scss";
 
 const FontSize = () => {
   const options = [

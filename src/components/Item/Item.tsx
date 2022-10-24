@@ -1,10 +1,10 @@
 import { FC, DragEvent, createRef, useEffect, useState } from "react";
-import { ITaskMenuData, TaskType } from "../../types/item";
 import { CollectionType } from "../../api/destination";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+import { ITaskMenuData, TaskType } from "../../types/item";
+import EditItem from "../EditItem/EditItem";
 import Icon from "../Icon/Icon";
 import TaskMenu from "../TaskMenu/TaskMenu";
-import EditItem from "../EditItem/EditItem";
-import { useOutsideClick } from "../../hooks/useOutsideClick";
 import "./Item.scss";
 
 interface Props {
@@ -59,8 +59,8 @@ const Item: FC<Props> = ({ data, collection, onDragStart }) => {
           description={description}
           collection={collection}
           onClose={() => {
-            setEditMode(false)
-            setMenuOpen(false)
+            setEditMode(false);
+            setMenuOpen(false);
           }}
         />
       ) : (

@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from "react";
 import { IMenu } from "../../types/settingsModal";
 import SettingsMenuOption from "../SettingsMenuOption/SettingsMenuOption";
 import { Background } from "../SettingsMenuOption/options/Background/Background";
-import Language from "../SettingsMenuOption/options/Language/Language";
 import FontSize from "../SettingsMenuOption/options/FontSize/FontSize";
+import Language from "../SettingsMenuOption/options/Language/Language";
 import Theme from "../SettingsMenuOption/options/Theme/Theme";
 import "./SettingsModal.scss";
 
