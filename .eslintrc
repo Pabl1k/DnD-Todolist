@@ -9,14 +9,11 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "import", "jsx-a11y", "prettier"],
+  "plugins": ["react", "jsx-a11y", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
     "plugin:eslint-comments/recommended",
     "eslint-config-prettier"
