@@ -19,22 +19,19 @@ const EditItem: FC<Props> = ({
   collection,
   onClose,
 }) => {
-  const [newValues, setNewValues] = useState({ title: "", description: "" });
-
+  const [newValues, setNewValues] = useState({ title, description });
   const { updateTask } = useManagement();
 
   const inputsData = [
     {
       id: "title",
       autoFocus: true,
-      currentValue: title,
       newValue: newValues.title,
       onChange: (e: ChangeEvent<HTMLInputElement>) =>
         setNewValues({ ...newValues, title: e.currentTarget.value }),
     },
     {
       id: "description",
-      currentValue: description,
       newValue: newValues.description,
       onChange: (e: ChangeEvent<HTMLInputElement>) =>
         setNewValues({ ...newValues, description: e.currentTarget.value }),
@@ -64,7 +61,6 @@ const EditItem: FC<Props> = ({
       {inputsData.map((x) => (
         <TaskInput
           key={x.id}
-          placeholder={x.currentValue}
           value={x.newValue}
           onChange={x.onChange}
           onKeyDown={(e) => onKeyPress(e)}
