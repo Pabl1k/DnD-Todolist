@@ -3,13 +3,12 @@ import "./CircleCheckbox.scss";
 
 interface Props {
   active: boolean;
-  onClick: () => void;
 }
 
-const CircleCheckbox: FC<Props> = ({ active, onClick }) => {
+const CircleCheckbox: FC<Props> = ({ active }) => {
   return (
     <div className="circle-checkbox">
-      {active && <div className="circle-checkbox__active" onClick={onClick} />}
+      {active && <div className="circle-checkbox__active" />}
     </div>
   );
 };

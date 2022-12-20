@@ -8,10 +8,7 @@ interface Props {
 
 const Theme: FC<Props> = ({ currentMode }) => {
   return (
-    <div
-      className="theme"
-      title={`Switch to ${currentMode === "light" ? "dark" : "light"} mode`}
-    >
+    <div className="theme" title={`Switch to ${currentMode === "light" ? "dark" : "light"} mode`}>
       <span>Theme</span>
       <Icon
         name={currentMode === "light" ? "dark-theme" : "light-theme"}

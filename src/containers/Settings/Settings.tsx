@@ -17,11 +17,7 @@ const Settings: FC<Props> = ({ setBackgroundColor }) => {
   return (
     <div className="settings" ref={modalRef}>
       <SettingsModal open={open} setBackgroundColor={setBackgroundColor} />
-      <button
-        type="button"
-        className={`settings__button ${open ? "open" : "closed"}`}
-        onClick={() => setOpen(!open)}
-      >
+      <button type="button" className={`settings__button ${open ? "open" : "closed"}`} onClick={() => setOpen(!open)}>
         <Icon name="settings" height={50} width={50} />
       </button>
     </div>

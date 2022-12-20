@@ -33,8 +33,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
       id: "descriptionInput",
       placeholder: "Enter description (optional)",
       value: values.description,
-      onChange: (e: ChangeEvent<HTMLInputElement>) =>
-        setValues({ ...values, description: e.currentTarget.value }),
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setValues({ ...values, description: e.currentTarget.value }),
     },
   ];
   const newTask: TaskType = {

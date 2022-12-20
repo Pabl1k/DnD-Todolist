@@ -23,10 +23,7 @@ const ListSelector = () => {
         <CreateNewItemButton title="Add new list" onClick={() => {}} />
       </div>
       <SelectorItem title="selector" />
-      <button
-        style={{ border: "2px solid black", marginLeft: 15 }}
-        onClick={logoutHandler}
-      >
+      <button style={{ border: "2px solid black", marginLeft: 15 }} onClick={logoutHandler}>
         Logout
       </button>
     </div>

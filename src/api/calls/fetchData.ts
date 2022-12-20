@@ -11,21 +11,17 @@ export const useFetchDataAPI = () => {
     store.collection(COLLECTION.TODO).orderBy("priority", "desc")
   );
 
-  const [inProgressState, inProgressLoading, inProgressError] =
-    useCollectionData<TaskType>(
-      store.collection(COLLECTION.IN_PROGRESS).orderBy("priority", "desc")
-    );
+  const [inProgressState, inProgressLoading, inProgressError] = useCollectionData<TaskType>(
+    store.collection(COLLECTION.IN_PROGRESS).orderBy("priority", "desc")
+  );
 
   const [doneState, doneLoading, doneError] = useCollectionData<TaskType>(
     store.collection(COLLECTION.DONE).orderBy("priority", "desc")
   );
 
-  const [settings, settingsLoading] = useCollectionData<SettingsType>(
-    store.collection(COLLECTION.SETTINGS)
-  );
+  const [settings, settingsLoading] = useCollectionData<SettingsType>(store.collection(COLLECTION.SETTINGS));
 
-  const loading =
-    toDoLoading || inProgressLoading || doneLoading || settingsLoading;
+  const loading = toDoLoading || inProgressLoading || doneLoading || settingsLoading;
 
   return {
     toDoState,

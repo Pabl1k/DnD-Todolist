@@ -7,11 +7,7 @@ interface Props {
 }
 
 const SettingsMenuOption: FC<Props> = ({ lastChild, children }) => {
-  return (
-    <div className={`settings-menu-option ${lastChild && "last-child"}`}>
-      {children}
-    </div>
-  );
+  return <div className={`settings-menu-option ${lastChild && "last-child"}`}>{children}</div>;
 };
 
 export default SettingsMenuOption;

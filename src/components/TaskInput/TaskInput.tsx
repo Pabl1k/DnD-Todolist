@@ -11,15 +11,7 @@ interface Props {
   onKeyDown: KeyboardEventHandler<HTMLInputElement>;
 }
 
-const TaskInput: FC<Props> = ({
-  placeholder,
-  value,
-  autoFocus,
-  showError,
-  onChange,
-  onBlur,
-  onKeyDown,
-}) => {
+const TaskInput: FC<Props> = ({ placeholder, value, autoFocus, showError, onChange, onBlur, onKeyDown }) => {
   return (
     <>
       <input
@@ -32,9 +24,7 @@ const TaskInput: FC<Props> = ({
         onBlur={onBlur}
         onKeyDown={onKeyDown}
       />
-      {showError && (
-        <span className="task-input__error">Title can not be empty</span>
-      )}
+      {showError && <span className="task-input__error">Title can not be empty</span>}
     </>
   );
 };

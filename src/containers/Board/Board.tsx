@@ -11,34 +11,17 @@ interface Props {
   onDragEnd: () => void;
 }
 
-const Board: FC<Props> = ({
-  title,
-  toDoCard,
-  children,
-  onDragEnter,
-  onDragEnd,
-}) => {
+const Board: FC<Props> = ({ title, toDoCard, children, onDragEnter, onDragEnd }) => {
   const [addNewTask, setAddNewTask] = useState(false);
 
   return (
     <div className="card">
       <div className="card__row">
         <span className="card__title">{title}</span>
-        {toDoCard && (
-          <CreateNewItemButton
-            title="Add new task"
-            onClick={() => setAddNewTask(true)}
-          />
-        )}
+        {toDoCard && <CreateNewItemButton title="Add new task" onClick={() => setAddNewTask(true)} />}
       </div>
-      <div
-        className="card__main"
-        onDragEnter={onDragEnter}
-        onDragEnd={onDragEnd}
-      >
-        {toDoCard && addNewTask && (
-          <NewTask key="newTask" onNewTaskClose={() => setAddNewTask(false)} />
-        )}
+      <div className="card__main" onDragEnter={onDragEnter} onDragEnd={onDragEnd}>
+        {toDoCard && addNewTask && <NewTask key="newTask" onNewTaskClose={() => setAddNewTask(false)} />}
         {children}
       </div>
     </div>

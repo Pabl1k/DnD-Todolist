@@ -26,11 +26,7 @@ const SettingsModal: FC<Props> = ({ open, setBackgroundColor }) => {
   };
 
   const renderTitle = (title: string) => {
-    return title === "Theme" ? (
-      <Theme currentMode="light" />
-    ) : (
-      <span>{title}</span>
-    );
+    return title === "Theme" ? <Theme currentMode="light" /> : <span>{title}</span>;
   };
 
   const renderContent = (title: string) => {
@@ -62,17 +58,13 @@ const SettingsModal: FC<Props> = ({ open, setBackgroundColor }) => {
           <>
             <button
               key={m.id}
-              className={`settings-modal__single ${
-                openOptionIndex === index && "active"
-              }`}
+              className={`settings-modal__single ${openOptionIndex === index && "active"}`}
               onClick={() => optionClickHandler(index)}
             >
               {renderTitle(m.title)}
             </button>
             {openOptionIndex === index && (
-              <SettingsMenuOption lastChild={menu.length === index + 1}>
-                {renderContent(m.title)}
-              </SettingsMenuOption>
+              <SettingsMenuOption lastChild={menu.length === index + 1}>{renderContent(m.title)}</SettingsMenuOption>
             )}
           </>
         ))}

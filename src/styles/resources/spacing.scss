@@ -26,8 +26,7 @@
     "3xl": 3.125rem
   );
 
-  $_known-keys: "5xs", "4xs", "3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl",
-    "3xl";
+  $_known-keys: "5xs", "4xs", "3xs", "2xs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl";
 
   @if not index($_known-keys, $_key) {
     @error format-error-message($_key, "spacing()", $_known-keys);

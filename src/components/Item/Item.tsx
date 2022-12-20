@@ -67,9 +67,7 @@ const Item: FC<Props> = ({ data, collection, onDragStart }) => {
         <div className="item__container">
           <div className="item__top-container">
             <div>
-              {priority && (
-                <Icon name="priority" className="item__priority-icon" />
-              )}
+              {priority && <Icon name="priority" className="item__priority-icon" />}
               <span className="item__title">{title}</span>
             </div>
           </div>

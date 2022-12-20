@@ -47,15 +47,8 @@ const MainPage = () => {
   const dragEndHandler = async (boardIndex: number) => {
     const differentBoard = draggedTask?.startBoard !== draggedTask?.endBoard;
 
-    if (
-      draggedTask?.startBoard &&
-      draggedTask?.endBoard &&
-      draggedTask?.task &&
-      differentBoard
-    ) {
-      const indexToBeRemoved = generalState[boardIndex].state
-        ?.map((x) => x.id)
-        .indexOf(draggedTask.task.id);
+    if (draggedTask?.startBoard && draggedTask?.endBoard && draggedTask?.task && differentBoard) {
+      const indexToBeRemoved = generalState[boardIndex].state?.map((x) => x.id).indexOf(draggedTask.task.id);
 
       generalState[boardIndex].state?.splice(indexToBeRemoved!, 1);
 

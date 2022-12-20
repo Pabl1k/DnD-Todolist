@@ -12,13 +12,7 @@ interface Props {
   onClose: () => void;
 }
 
-const EditItem: FC<Props> = ({
-  itemId,
-  title,
-  description,
-  collection,
-  onClose,
-}) => {
+const EditItem: FC<Props> = ({ itemId, title, description, collection, onClose }) => {
   const [newValues, setNewValues] = useState({ title, description });
   const { updateTask } = useManagement();
 
@@ -27,8 +21,7 @@ const EditItem: FC<Props> = ({
       id: "title",
       autoFocus: true,
       newValue: newValues.title,
-      onChange: (e: ChangeEvent<HTMLInputElement>) =>
-        setNewValues({ ...newValues, title: e.currentTarget.value }),
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setNewValues({ ...newValues, title: e.currentTarget.value }),
     },
     {
       id: "description",
@@ -59,12 +52,7 @@ const EditItem: FC<Props> = ({
   return (
     <div className="edit-item">
       {inputsData.map((x) => (
-        <TaskInput
-          key={x.id}
-          value={x.newValue}
-          onChange={x.onChange}
-          onKeyDown={(e) => onKeyPress(e)}
-        />
+        <TaskInput key={x.id} value={x.newValue} onChange={x.onChange} onKeyDown={(e) => onKeyPress(e)} />
       ))}
     </div>
   );

@@ -11,13 +11,7 @@ interface Props {
   onEditMode: () => void;
 }
 
-const TaskMenu: FC<Props> = ({
-  collection,
-  taskId,
-  currentPriority,
-  closeMenu,
-  onEditMode,
-}) => {
+const TaskMenu: FC<Props> = ({ collection, taskId, currentPriority, closeMenu, onEditMode }) => {
   const { updateTask, deleteTask } = useManagement();
 
   const [deleteCheck, setDeleteCheck] = useState({
@@ -34,9 +28,7 @@ const TaskMenu: FC<Props> = ({
     setDeleteCheck({ ...deleteCheck, first: true });
   };
 
-  const priorityTitle = currentPriority
-    ? "Remove priority"
-    : "Mark as priority";
+  const priorityTitle = currentPriority ? "Remove priority" : "Mark as priority";
 
   const menu = [
     { id: "priority", title: priorityTitle, onClick: priorityHandler },
@@ -48,16 +40,10 @@ const TaskMenu: FC<Props> = ({
     <div className="delete-check">
       <span>Please confirm deletion</span>
       <div className="delete-check__buttons-container">
-        <button
-          className="delete-check__button"
-          onClick={() => setDeleteCheck({ ...deleteCheck, final: true })}
-        >
+        <button className="delete-check__button" onClick={() => setDeleteCheck({ ...deleteCheck, final: true })}>
           Confirm
         </button>
-        <button
-          className="delete-check__button"
-          onClick={() => setDeleteCheck({ ...deleteCheck, first: false })}
-        >
+        <button className="delete-check__button" onClick={() => setDeleteCheck({ ...deleteCheck, first: false })}>
           Cancel
         </button>
       </div>
@@ -76,11 +62,7 @@ const TaskMenu: FC<Props> = ({
       {deleteCheck.first
         ? renderDeleteCheck()
         : menu.map((m) => (
-            <button
-              key={m.id}
-              className="task-menu__single"
-              onClick={m.onClick}
-            >
+            <button key={m.id} className="task-menu__single" onClick={m.onClick}>
               <span>{m.title}</span>
             </button>
           ))}

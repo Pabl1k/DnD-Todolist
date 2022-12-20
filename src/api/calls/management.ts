@@ -10,16 +10,8 @@ export const useManagement = () => {
     await store.collection(collection).add(newTask);
   };
 
-  const updateTask = async (
-    collection: CollectionType,
-    taskId: string,
-    update: UpdateTaskType
-  ) => {
-    const snapshot = await store
-      .collection(collection)
-      .limit(1)
-      .where("id", "==", taskId)
-      .get();
+  const updateTask = async (collection: CollectionType, taskId: string, update: UpdateTaskType) => {
+    const snapshot = await store.collection(collection).limit(1).where("id", "==", taskId).get();
 
     await snapshot.docs[0].ref.update(update);
   };
@@ -31,11 +23,7 @@ export const useManagement = () => {
   };
 
   const deleteTask = async (collection: CollectionType, taskId: string) => {
-    const snapshot = await store
-      .collection(collection)
-      .limit(1)
-      .where("id", "==", taskId)
-      .get();
+    const snapshot = await store.collection(collection).limit(1).where("id", "==", taskId).get();
 
     await snapshot.docs[0].ref.delete();
   };
