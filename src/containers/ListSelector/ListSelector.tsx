@@ -1,13 +1,13 @@
 import CreateNewItemButton from "../../components/CreateNewItemButton/CreateNewItemButton";
 import SelectorItem from "../../components/SelectorItem/SelectorItem";
-import { useCustomContext } from "../../hooks/useCustomContext";
+import { useAppContext } from "../../hooks/useAppContext";
 import "./ListSelector.scss";
 
 /**
  *  ListSelector component will be for future updates
  */
 const ListSelector = () => {
-  const { auth } = useCustomContext();
+  const { auth } = useAppContext();
 
   const logoutHandler = async () => {
     await auth.signOut();

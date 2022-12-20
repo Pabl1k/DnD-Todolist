@@ -1,10 +1,10 @@
-import { useCustomContext } from "../../hooks/useCustomContext";
+import { useAppContext } from "../../hooks/useAppContext";
 import { TaskType, UpdateTaskType } from "../../types/item";
 import { Settings } from "../../types/settings";
 import { COLLECTION, CollectionType } from "../destination";
 
 export const useManagement = () => {
-  const { store } = useCustomContext();
+  const { store } = useAppContext();
 
   const addTask = async (collection: CollectionType, newTask: TaskType) => {
     await store.collection(collection).add(newTask);

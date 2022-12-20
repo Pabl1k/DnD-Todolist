@@ -1,8 +1,8 @@
-import { useCustomContext } from "../../hooks/useCustomContext";
+import { useAppContext } from "../../hooks/useAppContext";
 import "./Logout.scss";
 
 const Logout = () => {
-  const { auth } = useCustomContext();
+  const { auth } = useAppContext();
 
   const logoutHandler = async () => {
     await auth.signOut();

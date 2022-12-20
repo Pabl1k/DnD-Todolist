@@ -1,11 +1,11 @@
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useCustomContext } from "../../hooks/useCustomContext";
+import { useAppContext } from "../../hooks/useAppContext";
 import { TaskType } from "../../types/item";
 import { Settings as SettingsType } from "../../types/settings";
 import { COLLECTION } from "../destination";
 
 export const useFetchDataAPI = () => {
-  const { store } = useCustomContext();
+  const { store } = useAppContext();
 
   const [toDoState, toDoLoading, toDoError] = useCollectionData<TaskType>(
     store.collection(COLLECTION.TODO).orderBy("priority", "desc")

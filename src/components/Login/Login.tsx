@@ -1,10 +1,10 @@
 import firebase from "firebase";
-import { useCustomContext } from "../../hooks/useCustomContext";
+import { useAppContext } from "../../hooks/useAppContext";
 import Icon from "../Icon/Icon";
 import "./Login.scss";
 
 const Login = () => {
-  const { auth } = useCustomContext();
+  const { auth } = useAppContext();
 
   const loginHandler = async () => {
     try {
