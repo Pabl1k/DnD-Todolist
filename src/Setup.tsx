@@ -11,6 +11,7 @@ import { useAppContext } from "./hooks/useAppContext";
 import { useLoading } from "./hooks/useLoading";
 import { ILoadingContext } from "./types/Loading";
 import "./Setup.scss";
+import { STORAGE_KEYS, useLocalStorage } from "./hooks/useLocalStorage";
 
 export const LoadingContext = createContext<ILoadingContext | null>(null);
 
@@ -20,6 +21,8 @@ const Setup = () => {
   const loadingContextState = useLoading();
   const { settings, loading: dataLoading } = useFetchDataAPI();
 
+  const userId = useLocalStorage("get", STORAGE_KEYS.USER_ID);
+
   const color = settings?.map((x) => x.backgroundColor).join();
   const [backgroundColor, setBackgroundColor] = useState<string>("");
 
@@ -28,6 +31,12 @@ const Setup = () => {
       setBackgroundColor(color);
     }
   }, [color]);
+
+  useEffect(() => {
+    if (!userId) {
+      auth.signOut();
+    }
+  }, [userId]);
 
   if (authorizedLoading || dataLoading) {
     return <Spinner />;

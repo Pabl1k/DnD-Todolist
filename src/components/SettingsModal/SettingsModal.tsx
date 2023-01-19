@@ -17,8 +17,8 @@ const SettingsModal: FC<Props> = ({ open, setBackgroundColor }) => {
 
   const menu: IMenu[] = [
     { id: 1, title: "Background" },
-    { id: 2, title: "Language" },
-    { id: 3, title: "Font size" },
+    // { id: 2, title: "Language" },
+    // { id: 3, title: "Font size" },
   ];
 
   const optionClickHandler = (index: number) => {
@@ -68,6 +68,7 @@ const SettingsModal: FC<Props> = ({ open, setBackgroundColor }) => {
             )}
           </>
         ))}
+        <div style={{textAlign: 'center'}}>Future settings options are coming</div>
       </div>
     </div>
   ) : null;

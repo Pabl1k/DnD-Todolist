@@ -8,6 +8,7 @@ export interface TaskType {
   priority?: boolean;
   pinned?: boolean;
   createdAt?: firebase.firestore.FieldValue;
+  owner: string;
 }
 
 export interface UpdateTaskType {

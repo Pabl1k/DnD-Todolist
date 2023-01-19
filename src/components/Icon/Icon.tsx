@@ -1,8 +1,5 @@
 import { FC } from "react";
 import Dark from "../../assets/icons/dark-theme.svg";
-import EN from "../../assets/icons/flags/EN.svg";
-import LT from "../../assets/icons/flags/LT.svg";
-import RU from "../../assets/icons/flags/RU.svg";
 import Google from "../../assets/icons/google.svg";
 import Settings from "../../assets/icons/light-settings.svg";
 import Light from "../../assets/icons/light-theme.svg";
@@ -40,12 +37,6 @@ const Icon: FC<Props> = ({ name, className, alt, height = 30, width = 30 }) => {
   };
 
   switch (name) {
-    case "EnFlag":
-      return <EN {...props} />;
-    case "LtFlag":
-      return <LT {...props} />;
-    case "RuFlag":
-      return <RU {...props} />;
     case "dark-theme":
       return <Dark {...props} />;
     case "google":

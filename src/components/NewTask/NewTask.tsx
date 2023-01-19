@@ -6,12 +6,15 @@ import { uid } from "../../hooks/uid";
 import { TaskType } from "../../types/item";
 import TaskInput from "../TaskInput/TaskInput";
 import "./NewTask.scss";
+import { STORAGE_KEYS, useLocalStorage } from "../../hooks/useLocalStorage";
 
 interface Props {
   onNewTaskClose: () => void;
 }
 
 const NewTask: FC<Props> = ({ onNewTaskClose }) => {
+  const userId = useLocalStorage('get', STORAGE_KEYS.USER_ID);
+
   const [values, setValues] = useState({ title: "", description: "" });
   const [error, setError] = useState(false);
 
@@ -43,6 +46,7 @@ const NewTask: FC<Props> = ({ onNewTaskClose }) => {
     priority: false,
     pinned: false,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    owner: userId
   };
 
   const onKeyPress = async (e: KeyboardEvent<HTMLInputElement>) => {
