@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import "firebase/Login.tsx"
 import { useAppContext } from "../../hooks/useAppContext";
 import Icon from "../Icon/Icon";
 import "./Login.scss";

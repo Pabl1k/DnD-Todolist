@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/index.tsx";
 import Setup from "./Setup";
 import { firebaseConfig } from "./api/config";
 import "./styles/index.scss";

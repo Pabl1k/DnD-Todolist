@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetchDataAPI } from "../../api/calls/fetchData";
 import { useManagement } from "../../api/calls/management";
 import { COLLECTION, CollectionType } from "../../api/destination";
@@ -6,6 +6,8 @@ import Item from "../../components/Item/Item";
 import { TaskType } from "../../types/item";
 import Board from "../Board/Board";
 import "./MainPage.scss";
+import { STORAGE_KEYS, useLocalStorage } from "../../hooks/useLocalStorage";
+import { useAppContext } from "../../hooks/useAppContext";
 
 interface IDraggedTask {
   startBoard?: CollectionType;
@@ -14,6 +16,9 @@ interface IDraggedTask {
 }
 
 const MainPage = () => {
+  const { auth } = useAppContext();
+  const userId = useLocalStorage("get", STORAGE_KEYS.USER_ID);
+
   const { toDoState, inProgressState, doneState } = useFetchDataAPI();
   const generalState = [
     { id: COLLECTION.TODO as CollectionType, title: "To do", state: toDoState },
@@ -57,6 +62,12 @@ const MainPage = () => {
       setDraggedTask(null);
     }
   };
+
+  useEffect(() => {
+    if (!userId) {
+      auth.signOut();
+    }
+  }, [userId]);
 
   return (
     <section className="main-page">
