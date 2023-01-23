@@ -29,6 +29,14 @@ const Setup = () => {
     }
   }, [color]);
 
+  useEffect(() => {
+    if (authorized) {
+      document.title = "My board";
+    } else {
+      document.title = "Login";
+    }
+  }, [authorized]);
+
   if (authorizedLoading || dataLoading) {
     return <Spinner />;
   }

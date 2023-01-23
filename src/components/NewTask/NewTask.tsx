@@ -1,5 +1,4 @@
 import firebase from "firebase";
-import "firebase/NewTask.tsx";
 import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 import { useManagement } from "../../api/calls/management";
 import { COLLECTION } from "../../api/destination";

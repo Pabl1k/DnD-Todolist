@@ -5,9 +5,9 @@ import { COLLECTION, CollectionType } from "../../api/destination";
 import Item from "../../components/Item/Item";
 import { TaskType } from "../../types/item";
 import Board from "../Board/Board";
-import "./MainPage.scss";
 import { STORAGE_KEYS, useLocalStorage } from "../../hooks/useLocalStorage";
 import { useAppContext } from "../../hooks/useAppContext";
+import "./MainPage.scss";
 
 interface IDraggedTask {
   startBoard?: CollectionType;
